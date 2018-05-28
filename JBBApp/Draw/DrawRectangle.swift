@@ -113,32 +113,38 @@ class DrawRectangle: UIView {
     private lazy var parser = JBBParser(str: self.schemeStr)
     lazy var scheme = Scheme(name: self.parser.name ?? "no name", colors: parser.colors, rows: parser.rows)
     
-    var cellWidth: CGFloat = 1.0
-    var cellHeight: CGFloat = 1.0
+    // ширина и высота каждой ячейки
+    lazy var cellWidth: CGFloat = 1.0
+    lazy var cellHeight: CGFloat = 1.0
     
     
     override func draw(_ rect: CGRect) {
         
+        // вычисляем ширину и высоту каждой ячейки
         cellWidth = CGFloat(self.frame.size.width) / CGFloat(scheme.rows[0].count)
         cellHeight = cellWidth
         
-        
+        // проходим по всем строкам
         for (ri, row) in scheme.rows.enumerated() {
             
+            // проходим по всем ячейкам строки
             for (ii, item) in row.enumerated() {
                 
+                // рисуем квадрат(ячейку)
                 drawRect(x: cellWidth * CGFloat(ii), y: cellHeight * CGFloat(ri), color: scheme.colors[item].cgColor)
                 
             }
             
         }
         
+        // пытаюсь так задать высоту - не работает
         self.heightAnchor.constraint(equalToConstant: cellHeight * CGFloat(scheme.rows.count))
         
         print(scheme.colors)
         
     }
     
+    // рисование ячейки
     func drawRect(x: CGFloat, y: CGFloat, color: CGColor) {
         let context = UIGraphicsGetCurrentContext()
         context?.setLineWidth(0.5)

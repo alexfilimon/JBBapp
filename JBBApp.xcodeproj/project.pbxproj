@@ -14,8 +14,6 @@
 		C1CFAEAB20B58439008A4CCD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1CFAEA920B58439008A4CCD /* LaunchScreen.storyboard */; };
 		C1CFAEB420B5845B008A4CCD /* Scheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CFAEB320B5845B008A4CCD /* Scheme.swift */; };
 		C1CFAEB620B58595008A4CCD /* JBBParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CFAEB520B58595008A4CCD /* JBBParser.swift */; };
-		C1DECEF120B6E6B600561247 /* cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1DECEF020B6E6B600561247 /* cell.xib */; };
-		C1DECEF320B6E73800561247 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DECEF220B6E73800561247 /* CellView.swift */; };
 		C1FCB3D620B7B99B001EB3AD /* DrawRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FCB3D520B7B99B001EB3AD /* DrawRectangle.swift */; };
 		C1FCB3D820B7BA1A001EB3AD /* Draw.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1FCB3D720B7BA1A001EB3AD /* Draw.storyboard */; };
 		C1FCB3DA20B7BA7A001EB3AD /* DrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FCB3D920B7BA7A001EB3AD /* DrawViewController.swift */; };
@@ -31,8 +29,6 @@
 		C1CFAEAC20B58439008A4CCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C1CFAEB320B5845B008A4CCD /* Scheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scheme.swift; sourceTree = "<group>"; };
 		C1CFAEB520B58595008A4CCD /* JBBParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JBBParser.swift; sourceTree = "<group>"; };
-		C1DECEF020B6E6B600561247 /* cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = cell.xib; sourceTree = "<group>"; };
-		C1DECEF220B6E73800561247 /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
 		C1FCB3D520B7B99B001EB3AD /* DrawRectangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawRectangle.swift; sourceTree = "<group>"; };
 		C1FCB3D720B7BA1A001EB3AD /* Draw.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Draw.storyboard; sourceTree = "<group>"; };
 		C1FCB3D920B7BA7A001EB3AD /* DrawViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawViewController.swift; sourceTree = "<group>"; };
@@ -76,8 +72,6 @@
 				C1CFAEA720B58439008A4CCD /* Assets.xcassets */,
 				C1CFAEA920B58439008A4CCD /* LaunchScreen.storyboard */,
 				C1CFAEAC20B58439008A4CCD /* Info.plist */,
-				C1DECEF020B6E6B600561247 /* cell.xib */,
-				C1DECEF220B6E73800561247 /* CellView.swift */,
 			);
 			path = JBBApp;
 			sourceTree = "<group>";
@@ -160,7 +154,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1CFAEAB20B58439008A4CCD /* LaunchScreen.storyboard in Resources */,
-				C1DECEF120B6E6B600561247 /* cell.xib in Resources */,
 				C1CFAEA820B58439008A4CCD /* Assets.xcassets in Resources */,
 				C1FCB3D820B7BA1A001EB3AD /* Draw.storyboard in Resources */,
 				C1CFAEA620B58437008A4CCD /* Main.storyboard in Resources */,
@@ -175,7 +168,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1CFAEA320B58437008A4CCD /* ViewController.swift in Sources */,
-				C1DECEF320B6E73800561247 /* CellView.swift in Sources */,
 				C1CFAEB620B58595008A4CCD /* JBBParser.swift in Sources */,
 				C1CFAEB420B5845B008A4CCD /* Scheme.swift in Sources */,
 				C1FCB3DA20B7BA7A001EB3AD /* DrawViewController.swift in Sources */,
