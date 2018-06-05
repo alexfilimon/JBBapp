@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ad8-Sl-WSw">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Scheme Controller-->
+        <scene sceneID="yAQ-GW-Pt5">
+            <objects>
+                <viewController storyboardIdentifier="SchemeController" id="ad8-Sl-WSw" customClass="SchemeController" customModule="JBBApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Jzd-RW-NQt">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TAA-Zy-kzV">
+                                <rect key="frame" x="70" y="120" width="250" height="448"/>
+                            </scrollView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="61r-ct-qkE">
+                                <rect key="frame" x="0.0" y="120" width="64" height="448"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="64" id="lyX-0B-2ax"/>
+                                </constraints>
+                            </scrollView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="3Xi-bw-dCi">
+                                <rect key="frame" x="14" y="26" width="293" height="29"/>
+                                <segments>
+                                    <segment title="Схема"/>
+                                    <segment title="Цвета"/>
+                                    <segment title="Информация"/>
+                                </segments>
+                            </segmentedControl>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="VbE-bt-UTm">
+                                <rect key="frame" x="213" y="116" width="94" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </stepper>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MMf-a8-tpR">
+                                <rect key="frame" x="152" y="116" width="53" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="uta-6o-5or" firstAttribute="bottom" secondItem="TAA-Zy-kzV" secondAttribute="bottom" id="4P4-On-Rj9"/>
+                            <constraint firstItem="61r-ct-qkE" firstAttribute="leading" secondItem="uta-6o-5or" secondAttribute="leading" id="6sH-rl-XyH"/>
+                            <constraint firstItem="uta-6o-5or" firstAttribute="trailing" secondItem="TAA-Zy-kzV" secondAttribute="trailing" id="7iK-nX-Tgt"/>
+                            <constraint firstItem="3Xi-bw-dCi" firstAttribute="centerX" secondItem="Jzd-RW-NQt" secondAttribute="centerX" id="8Fe-BT-VyO"/>
+                            <constraint firstItem="TAA-Zy-kzV" firstAttribute="leading" secondItem="uta-6o-5or" secondAttribute="leading" constant="70" id="G6Y-u1-V9C"/>
+                            <constraint firstItem="3Xi-bw-dCi" firstAttribute="top" secondItem="uta-6o-5or" secondAttribute="top" constant="6" id="Y2h-Rc-d1e"/>
+                            <constraint firstItem="61r-ct-qkE" firstAttribute="top" secondItem="uta-6o-5or" secondAttribute="top" constant="100" id="eBj-mF-rvE"/>
+                            <constraint firstItem="uta-6o-5or" firstAttribute="bottom" secondItem="61r-ct-qkE" secondAttribute="bottom" id="fVc-mE-79L"/>
+                            <constraint firstItem="TAA-Zy-kzV" firstAttribute="top" secondItem="uta-6o-5or" secondAttribute="top" constant="100" id="mIm-FX-lXA"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="uta-6o-5or"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="VbE-bt-UTm"/>
+                                <exclude reference="MMf-a8-tpR"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" id="bVa-dL-0fC"/>
+                    <connections>
+                        <outlet property="ScrollView" destination="TAA-Zy-kzV" id="VgO-7S-mho"/>
+                        <outlet property="cellsScrollView" destination="61r-ct-qkE" id="urs-PX-iJC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qwd-xl-Xh1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1951.875" y="130.98591549295776"/>
+        </scene>
+    </scenes>
+</document>

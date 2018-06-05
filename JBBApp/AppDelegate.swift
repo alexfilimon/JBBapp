@@ -12,10 +12,66 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    // сслыка на tabBar
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        
+//        let schemeVC = SchemeController()
+//        schemeVC.scheme = curScheme
+//
+//        self.window = UIWindow(frame: UIScreen.main.bounds)
+//        self.window?.rootViewController = schemeVC
+//        self.window?.makeKeyAndVisible()
+        
+//        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Scheme", bundle: nil)
+//        let homePage = mainStoryboard.instantiateViewController(withIdentifier: "SchemeController") as! SchemeController
+//        homePage.scheme = curScheme
+//        self.window?.rootViewController = homePage
+        
+        return true
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        
+        do {
+            let contentStr = try String(contentsOf: url)
+            
+            // проверить что url наш на всякий случай
+            
+            let parser = JBBParser(str: contentStr)
+            let curScheme = Scheme(name: parser.name ?? "no name", colors: parser.colors, rows: parser.rows)
+            
+            // selectViewController
+            // popToRoot
+            // push
+            
+            
+            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Scheme", bundle: nil)
+            let homePage = mainStoryboard.instantiateViewController(withIdentifier: "SchemeController") as! SchemeController
+            homePage.scheme = curScheme
+            self.window?.rootViewController = homePage
+            
+
+//
+//            let schemeVC = SchemeController()
+//            schemeVC.scheme = curScheme
+//
+//            self.window = UIWindow(frame: UIScreen.main.bounds)
+//            self.window?.rootViewController = schemeVC
+//            self.window?.makeKeyAndVisible()
+            
+            // DrawRectangle
+        }
+        catch _ {
+            print("ERROR OPENING FILE")
+        }
+        
+        
+        
         return true
     }
 

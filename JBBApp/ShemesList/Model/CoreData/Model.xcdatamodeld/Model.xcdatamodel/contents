@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17E199" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Color" representedClassName="Color" syncable="YES" codeGenerationType="class">
+        <attribute name="autoName" attributeType="String" syncable="YES"/>
+        <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="value" attributeType="String" syncable="YES"/>
+        <relationship name="relationship" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Scheme" inverseName="relationship" inverseEntity="Scheme" syncable="YES"/>
+    </entity>
+    <entity name="Scheme" representedClassName=".SchemeMO" syncable="YES">
+        <attribute name="jbbFile" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="relationship" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Color" inverseName="relationship" inverseEntity="Color" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Scheme" positionX="241" positionY="-171" width="128" height="88"/>
+        <element name="Color" positionX="-54" positionY="9" width="128" height="105"/>
+    </elements>
+</model>

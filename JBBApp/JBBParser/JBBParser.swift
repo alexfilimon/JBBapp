@@ -38,6 +38,8 @@ class JBBParser {
             return curNew.split(separator: " ").map { Int($0) ?? 0 }
         }
         
+        rows.reverse()
+        
         name = nil
     }
     
