@@ -50,8 +50,8 @@ class SchemeController: UIViewController {
         
         var newHeight = CGFloat(Double(cells.linesCount) * (cells.margin + cells.height))
         print("large height: \(newHeight)")
-        if newHeight > 4000 {
-            newHeight = 4000
+        if newHeight > 8100 {
+            newHeight = 8100
         }
         
         let size2 = CGSize(width: cellsScrollView.frame.width, height: newHeight)
