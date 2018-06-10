@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C133CACA20CD3722007038CB /* InfoCellTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C133CAC920CD3722007038CB /* InfoCellTableView.swift */; };
 		C15F0A5720BFCEC4002BED6F /* Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15F0A5620BFCEC4002BED6F /* Cells.swift */; };
 		C19EC14720BFED230069BCEF /* SchemeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19EC14620BFED230069BCEF /* SchemeCell.swift */; };
 		C1BFA49120C64CF700FA366C /* SchemesListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BFA49020C64CF700FA366C /* SchemesListModel.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C133CAC920CD3722007038CB /* InfoCellTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCellTableView.swift; sourceTree = "<group>"; };
 		C15F0A5620BFCEC4002BED6F /* Cells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cells.swift; sourceTree = "<group>"; };
 		C19EC14620BFED230069BCEF /* SchemeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemeCell.swift; sourceTree = "<group>"; };
 		C1BFA49020C64CF700FA366C /* SchemesListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemesListModel.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				C1FCB3D920B7BA7A001EB3AD /* SchemeController.swift */,
 				C1FCB3D520B7B99B001EB3AD /* DrawRectangle.swift */,
 				C15F0A5620BFCEC4002BED6F /* Cells.swift */,
+				C133CAC920CD3722007038CB /* InfoCellTableView.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 				C1BFA4A520C6553600FA366C /* SchemeMO+CoreDataProperties.swift in Sources */,
 				C1CFAEB620B58595008A4CCD /* JBBParser.swift in Sources */,
 				C1CFAEB420B5845B008A4CCD /* Scheme.swift in Sources */,
+				C133CACA20CD3722007038CB /* InfoCellTableView.swift in Sources */,
 				C1DEEF7820C2BED8006AFB7C /* SettingsControllerTableViewController.swift in Sources */,
 				C1FCB3DA20B7BA7A001EB3AD /* SchemeController.swift in Sources */,
 				C1CFAEA120B58437008A4CCD /* AppDelegate.swift in Sources */,
