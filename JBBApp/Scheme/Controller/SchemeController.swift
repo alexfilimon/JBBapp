@@ -135,9 +135,12 @@ extension SchemeController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let cell = cell as? InfoCellTableView
-        cell?.label.text = String(indexPath.row)
+        let curGroupedRow = scheme!.groupedRows[indexPath.row]
         
-        cell?.colorView.backgroundColor = scheme?.groupedRows[indexPath.row].0.color
+        
+        cell?.label.text = String(curGroupedRow.1)
+        
+        cell?.colorView.backgroundColor = curGroupedRow.0.color
         cell?.colorView.layer.borderWidth = 0.5
         cell?.colorView.layer.borderColor = UIColor.black.cgColor
         
