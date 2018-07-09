@@ -13,7 +13,7 @@ class JBBParser {
     
     var name: String?
     var colors: [UIColor]
-    var rows: [[Int]]
+    var cells: [Int]
     
     init(str: String) {
         
@@ -32,7 +32,7 @@ class JBBParser {
         let rowsStart = str.endIndex(of: "(model")!
         let rowsEnd = str[rowsStart...].index(of: "))")!
         let rowsStr = str[rowsStart..<str.index(rowsEnd, offsetBy: 1)]
-        rows = rowsStr.components(separatedBy: "\n").filter { $0.count > 0 }.map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }.map { (cur) -> [Int] in
+        var rows = rowsStr.components(separatedBy: "\n").filter { $0.count > 0 }.map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }.map { (cur) -> [Int] in
             let curNew = cur[cur.index(cur.startIndex, offsetBy: 5)..<cur.index(cur.endIndex, offsetBy: -1)]
             
             return curNew.split(separator: " ").map { Int($0) ?? 0 }
@@ -40,34 +40,16 @@ class JBBParser {
         
         rows.reverse()
         
+        cells = []
+        for row in rows {
+            for item in row {
+                cells.append(item)
+            }
+        }
+        
         name = nil
     }
     
 }
 
-extension StringProtocol where Index == String.Index {
-    func index<T: StringProtocol>(of string: T, options: String.CompareOptions = []) -> Index? {
-        return range(of: string, options: options)?.lowerBound
-    }
-    func endIndex<T: StringProtocol>(of string: T, options: String.CompareOptions = []) -> Index? {
-        return range(of: string, options: options)?.upperBound
-    }
-    func indexes<T: StringProtocol>(of string: T, options: String.CompareOptions = []) -> [Index] {
-        var result: [Index] = []
-        var start = startIndex
-        while start < endIndex, let range = range(of: string, options: options, range: start..<endIndex) {
-            result.append(range.lowerBound)
-            start = range.lowerBound < range.upperBound ? range.upperBound : index(range.lowerBound, offsetBy: 1, limitedBy: endIndex) ?? endIndex
-        }
-        return result
-    }
-    func ranges<T: StringProtocol>(of string: T, options: String.CompareOptions = []) -> [Range<Index>] {
-        var result: [Range<Index>] = []
-        var start = startIndex
-        while start < endIndex, let range = range(of: string, options: options, range: start..<endIndex) {
-            result.append(range)
-            start = range.lowerBound < range.upperBound  ? range.upperBound : index(range.lowerBound, offsetBy: 1, limitedBy: endIndex) ?? endIndex
-        }
-        return result
-    }
-}
+

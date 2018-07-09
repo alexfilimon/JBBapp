@@ -8,14 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		C133CACA20CD3722007038CB /* InfoCellTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C133CAC920CD3722007038CB /* InfoCellTableView.swift */; };
+		C13D0AE020EA1189000F3677 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13D0ADF20EA1188000F3677 /* UIColor.swift */; };
+		C13D0AE220EA11A0000F3677 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13D0AE120EA11A0000F3677 /* String.swift */; };
 		C15F0A5720BFCEC4002BED6F /* Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15F0A5620BFCEC4002BED6F /* Cells.swift */; };
 		C19EC14720BFED230069BCEF /* SchemeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19EC14620BFED230069BCEF /* SchemeCell.swift */; };
+		C1AE266120F33B53001B60F8 /* StringProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AE266020F33B53001B60F8 /* StringProtocol.swift */; };
 		C1BFA49120C64CF700FA366C /* SchemesListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BFA49020C64CF700FA366C /* SchemesListModel.swift */; };
 		C1BFA49520C6520D00FA366C /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C1BFA49320C6520D00FA366C /* Model.xcdatamodeld */; };
 		C1BFA4A420C6553600FA366C /* SchemeMO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BFA4A220C6553600FA366C /* SchemeMO+CoreDataClass.swift */; };
 		C1BFA4A520C6553600FA366C /* SchemeMO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BFA4A320C6553600FA366C /* SchemeMO+CoreDataProperties.swift */; };
 		C1BFA4A820C655E200FA366C /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BFA4A720C655E200FA366C /* CoreDataManager.swift */; };
 		C1BFA4AA20C66E8F00FA366C /* TabBarMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1BFA4A920C66E8F00FA366C /* TabBarMain.storyboard */; };
+		C1C7638F20E8CA2300F91E02 /* SchemeNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C7638E20E8CA2300F91E02 /* SchemeNew.swift */; };
+		C1C7639120E8CA9400F91E02 /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C7639020E8CA9400F91E02 /* CustomColor.swift */; };
 		C1CFAEA120B58437008A4CCD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CFAEA020B58437008A4CCD /* AppDelegate.swift */; };
 		C1CFAEA820B58439008A4CCD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1CFAEA720B58439008A4CCD /* Assets.xcassets */; };
 		C1CFAEAB20B58439008A4CCD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1CFAEA920B58439008A4CCD /* LaunchScreen.storyboard */; };
@@ -32,14 +37,19 @@
 
 /* Begin PBXFileReference section */
 		C133CAC920CD3722007038CB /* InfoCellTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCellTableView.swift; sourceTree = "<group>"; };
+		C13D0ADF20EA1188000F3677 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		C13D0AE120EA11A0000F3677 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		C15F0A5620BFCEC4002BED6F /* Cells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cells.swift; sourceTree = "<group>"; };
 		C19EC14620BFED230069BCEF /* SchemeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemeCell.swift; sourceTree = "<group>"; };
+		C1AE266020F33B53001B60F8 /* StringProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringProtocol.swift; sourceTree = "<group>"; };
 		C1BFA49020C64CF700FA366C /* SchemesListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemesListModel.swift; sourceTree = "<group>"; };
 		C1BFA49420C6520D00FA366C /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		C1BFA4A220C6553600FA366C /* SchemeMO+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SchemeMO+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C1BFA4A320C6553600FA366C /* SchemeMO+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SchemeMO+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C1BFA4A720C655E200FA366C /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		C1BFA4A920C66E8F00FA366C /* TabBarMain.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBarMain.storyboard; sourceTree = "<group>"; };
+		C1C7638E20E8CA2300F91E02 /* SchemeNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemeNew.swift; sourceTree = "<group>"; };
+		C1C7639020E8CA9400F91E02 /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
 		C1CFAE9D20B58437008A4CCD /* JBBApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JBBApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1CFAEA020B58437008A4CCD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C1CFAEA720B58439008A4CCD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -67,6 +77,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C13D0ADE20EA1173000F3677 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C13D0ADF20EA1188000F3677 /* UIColor.swift */,
+				C13D0AE120EA11A0000F3677 /* String.swift */,
+				C1AE266020F33B53001B60F8 /* StringProtocol.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C13D0AE320EA11D3000F3677 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C1CFAEB320B5845B008A4CCD /* Scheme.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		C19EC14520BFECF40069BCEF /* Scheme */ = {
 			isa = PBXGroup;
 			children = (
@@ -75,6 +103,16 @@
 				C1DEEF7F20C3AA0A006AFB7C /* Controller */,
 			);
 			path = Scheme;
+			sourceTree = "<group>";
+		};
+		C1AE265F20F31A92001B60F8 /* New Models */ = {
+			isa = PBXGroup;
+			children = (
+				C19EC14620BFED230069BCEF /* SchemeCell.swift */,
+				C1C7638E20E8CA2300F91E02 /* SchemeNew.swift */,
+				C1C7639020E8CA9400F91E02 /* CustomColor.swift */,
+			);
+			path = "New Models";
 			sourceTree = "<group>";
 		};
 		C1BFA49220C651FA00FA366C /* CoreData */ = {
@@ -115,6 +153,9 @@
 		C1CFAE9F20B58437008A4CCD /* JBBApp */ = {
 			isa = PBXGroup;
 			children = (
+				C1AE265F20F31A92001B60F8 /* New Models */,
+				C13D0AE320EA11D3000F3677 /* Models */,
+				C13D0ADE20EA1173000F3677 /* Extensions */,
 				C1DEEF8220C3AA28006AFB7C /* ShemesList */,
 				C19EC14520BFECF40069BCEF /* Scheme */,
 				C1CFAEB220B58440008A4CCD /* JBBParser */,
@@ -191,8 +232,6 @@
 		C1DEEF8120C3AA19006AFB7C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C1CFAEB320B5845B008A4CCD /* Scheme.swift */,
-				C19EC14620BFED230069BCEF /* SchemeCell.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -306,8 +345,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C13D0AE220EA11A0000F3677 /* String.swift in Sources */,
 				C19EC14720BFED230069BCEF /* SchemeCell.swift in Sources */,
 				C1DEEF8920C3AB38006AFB7C /* SchemesListController.swift in Sources */,
+				C1C7639120E8CA9400F91E02 /* CustomColor.swift in Sources */,
+				C1AE266120F33B53001B60F8 /* StringProtocol.swift in Sources */,
 				C15F0A5720BFCEC4002BED6F /* Cells.swift in Sources */,
 				C1BFA4A520C6553600FA366C /* SchemeMO+CoreDataProperties.swift in Sources */,
 				C1CFAEB620B58595008A4CCD /* JBBParser.swift in Sources */,
@@ -315,8 +357,10 @@
 				C133CACA20CD3722007038CB /* InfoCellTableView.swift in Sources */,
 				C1DEEF7820C2BED8006AFB7C /* SettingsControllerTableViewController.swift in Sources */,
 				C1FCB3DA20B7BA7A001EB3AD /* SchemeController.swift in Sources */,
+				C1C7638F20E8CA2300F91E02 /* SchemeNew.swift in Sources */,
 				C1CFAEA120B58437008A4CCD /* AppDelegate.swift in Sources */,
 				C1BFA4A420C6553600FA366C /* SchemeMO+CoreDataClass.swift in Sources */,
+				C13D0AE020EA1189000F3677 /* UIColor.swift in Sources */,
 				C1FCB3D620B7B99B001EB3AD /* DrawRectangle.swift in Sources */,
 				C1BFA49520C6520D00FA366C /* Model.xcdatamodeld in Sources */,
 				C1BFA4A820C655E200FA366C /* CoreDataManager.swift in Sources */,

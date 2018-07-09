@@ -32,28 +32,162 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        homePage.scheme = curScheme
 //        self.window?.rootViewController = homePage
         
+        let schemeStr =
+        """
+        (jbb
+            (version 1)
+            (author "lacemaker Mary")
+            (organization "")
+            (notes "")
+            (colors
+                (rgb 255 255 255)
+                (rgb 151 52 33)
+                (rgb 255 99 76)
+                (rgb 255 255 255))
+            (view
+                (draft-visible true)
+                (corrected-visible true)
+                (simulation-visible true)
+                (report-visible true)
+                (selected-tool "pencil")
+                (selected-color 1)
+                (zoom 2)
+                (scroll 0)
+                (shift 0)
+                (draw-colors true)
+                (draw-symbols false)
+                (symbols "·abcdefghijklmnopqrstuvwxyz+-/\\*"))
+            (model
+                (row 2 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 2 2)
+                (row 2 2 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 2)
+                (row 2 2 1 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 2)
+                (row 2 2 2 1 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3)
+                (row 2 2 2 1 1 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3)
+                (row 2 2 2 2 1 1 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3)
+                (row 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 3 3 3)
+                (row 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 3 3)
+                (row 3 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 3 3)
+                (row 3 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 3)
+                (row 3 3 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 3)
+                (row 3 3 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2)
+                (row 3 3 3 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2)
+                (row 3 3 3 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2)
+                (row 2 3 3 3 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2)
+                (row 2 3 3 3 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2)
+                (row 2 2 3 3 3 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2)
+                (row 2 2 3 3 3 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2)
+                (row 2 2 2 3 3 3 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2)
+                (row 2 2 2 3 3 3 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2)
+                (row 2 2 2 2 3 3 3 3 2 2 2 1 1 1 1 1 1 1 1 1 1 1 1 1)
+                (row 1 1 1 1 1 3 3 3 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1 1)
+                (row 1 1 1 1 1 1 3 3 3 2 2 2 1 1 1 1 1 1 1 1 1 1 1 1)
+                (row 1 1 1 1 1 1 1 3 3 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1)
+                (row 1 1 1 1 1 1 1 1 3 3 2 2 2 1 1 1 1 1 1 1 1 1 1 1)
+                (row 1 1 1 1 1 1 1 1 1 3 2 2 2 2 1 1 1 1 1 1 1 1 1 1)
+                (row 2 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 2 2)
+                (row 2 2 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 2)
+                (row 2 2 1 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 2)
+                (row 2 2 2 1 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3)
+                (row 2 2 2 1 1 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3)
+                (row 2 2 2 2 1 1 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3)
+                (row 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 3 3 3)
+                (row 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 3 3)
+                (row 3 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 3 3)
+                (row 3 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 3)
+                (row 3 3 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 3)
+                (row 3 3 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2)
+                (row 3 3 3 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2)
+                (row 3 3 3 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2)
+                (row 2 3 3 3 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2)
+                (row 2 3 3 3 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2)
+                (row 2 2 3 3 3 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2)
+                (row 2 2 3 3 3 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2)
+                (row 2 2 2 3 3 3 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2)
+                (row 2 2 2 3 3 3 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2)
+                (row 2 2 2 2 3 3 3 3 2 2 2 1 1 1 1 1 1 1 1 1 1 1 1 1)
+                (row 1 1 1 1 1 3 3 3 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1 1)
+                (row 1 1 1 1 1 1 3 3 3 2 2 2 1 1 1 1 1 1 1 1 1 1 1 1)
+                (row 1 1 1 1 1 1 1 3 3 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1)
+                (row 1 1 1 1 1 1 1 1 3 3 2 2 2 1 1 1 1 1 1 1 1 1 1 1)
+                (row 1 1 1 1 1 1 1 1 1 3 2 2 2 2 1 1 1 1 1 1 1 1 1 1)
+                (row 2 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 2 2)
+                (row 2 2 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 2)
+                (row 2 2 1 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 2)
+                (row 2 2 2 1 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3)
+                (row 2 2 2 1 1 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3)
+                (row 2 2 2 2 1 1 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3)
+                (row 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 3 3 3)
+                (row 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 3 3)
+                (row 3 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 3 3)
+                (row 3 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 3)
+                (row 3 3 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 3)
+                (row 3 3 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2)
+                (row 3 3 3 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2)
+                (row 3 3 3 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2)
+                (row 2 3 3 3 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2)
+                (row 2 3 3 3 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2)
+                (row 2 2 3 3 3 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2)
+                (row 2 2 3 3 3 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2)
+                (row 2 2 2 3 3 3 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2)
+                (row 2 2 2 3 3 3 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2)
+                (row 2 2 2 2 3 3 3 3 2 2 2 1 1 1 1 1 1 1 1 1 1 1 1 1)
+                (row 1 1 1 1 1 3 3 3 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1 1)
+                (row 1 1 1 1 1 1 3 3 3 2 2 2 1 1 1 1 1 1 1 1 1 1 1 1)
+                (row 1 1 1 1 1 1 1 3 3 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1)
+                (row 1 1 1 1 1 1 1 1 3 3 2 2 2 1 1 1 1 1 1 1 1 1 1 1)
+                (row 1 1 1 1 1 1 1 1 1 3 2 2 2 2 1 1 1 1 1 1 1 1 1 1)
+                (row 2 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 2 2)
+                (row 2 2 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 2)
+                (row 2 2 1 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 2)
+                (row 2 2 2 1 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3)
+                (row 2 2 2 1 1 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3)
+                (row 2 2 2 2 1 1 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3)
+                (row 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 3 3 3)
+                (row 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 3 3)
+                (row 3 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 3 3)
+                (row 3 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 3)
+                (row 3 3 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 3)
+                (row 3 3 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2)
+                (row 3 3 3 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2)
+                (row 3 3 3 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2)
+                (row 2 3 3 3 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2)
+                (row 2 3 3 3 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2)
+                (row 2 2 3 3 3 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2)
+                (row 2 2 3 3 3 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2)
+                (row 2 2 2 3 3 3 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2)
+                (row 2 2 2 3 3 3 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2)
+                (row 2 2 2 2 3 3 3 3 2 2 2 1 1 1 1 1 1 1 1 1 1 1 1 1)
+                (row 1 1 1 1 1 3 3 3 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1 1)
+                (row 1 1 1 1 1 1 3 3 3 2 2 2 1 1 1 1 1 1 1 1 1 1 1 1)
+                (row 1 1 1 1 1 1 1 3 3 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1)
+                (row 1 1 1 1 1 1 1 1 3 3 2 2 2 1 1 1 1 1 1 1 1 1 1 1)
+                (row 1 1 1 1 1 1 1 1 1 3 2 2 2 2 1 1 1 1 1 1 1 1 1 1)))
+        """
+        let parser = JBBParser(str: schemeStr)
+        let scheme = SchemeNew(with: "Геометрия", cells: parser.cells, colors: parser.colors)
+        
         return true
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         
         do {
-            let contentStr = try String(contentsOf: url)
-            
-            // проверить что url наш на всякий случай
-            
-            let parser = JBBParser(str: contentStr)
-            let curScheme = Scheme(name: parser.name ?? "no name", colors: parser.colors, rows: parser.rows)
-            
-            // selectViewController
-            // popToRoot
-            // push
-            
-            
-            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Scheme", bundle: nil)
-            let homePage = mainStoryboard.instantiateViewController(withIdentifier: "SchemeController") as! SchemeController
-            homePage.scheme = curScheme
-            self.window?.rootViewController = homePage
+//            let contentStr = try String(contentsOf: url)
+//            
+//            // проверить что url наш на всякий случай
+//            
+//            let parser = JBBParser(str: contentStr)
+//            let curScheme = Scheme(name: parser.name ?? "no name", colors: parser.colors, rows: parser.cells)
+//            
+//            // selectViewController
+//            // popToRoot
+//            // push
+//            
+//            
+//            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Scheme", bundle: nil)
+//            let homePage = mainStoryboard.instantiateViewController(withIdentifier: "SchemeController") as! SchemeController
+//            homePage.scheme = curScheme
+//            self.window?.rootViewController = homePage
             
 
 //

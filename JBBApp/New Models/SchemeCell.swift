@@ -10,25 +10,26 @@ import UIKit
 
 class SchemeCell {
     
-    let color: UIColor
-    let colorNumber: Int
+    let color: CustomColor
+    // let colorNumber: Int
     var isRead = false
+    let id: Int
     
-    init(color: UIColor, colorNumber: Int) {
+    init(color: CustomColor, id: Int) {
         self.color = color
-        self.colorNumber = colorNumber
+        self.id = id
     }
     
 }
 
 extension SchemeCell: Equatable {
     static func == (lhs: SchemeCell, rhs: SchemeCell) -> Bool {
-        return lhs.color == rhs.color
+        return lhs.color.colorValue == rhs.color.colorValue
     }
 }
 
 extension SchemeCell: CustomStringConvertible {
     var description: String {
-        return "\(colorNumber)"
+        return "\(color.defaultName)"
     }
 }
