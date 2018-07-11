@@ -24,12 +24,12 @@ class SchemeCell {
 
 extension SchemeCell: Equatable {
     static func == (lhs: SchemeCell, rhs: SchemeCell) -> Bool {
-        return lhs.color.colorValue == rhs.color.colorValue
+        return lhs.id == rhs.id
     }
 }
 
 extension SchemeCell: CustomStringConvertible {
     var description: String {
-        return "\(color.defaultName)"
+        return "\(color.defaultName!)"
     }
 }

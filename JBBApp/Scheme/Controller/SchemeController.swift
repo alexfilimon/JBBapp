@@ -1,40 +1,40 @@
+////
+////  SchemeController.swift
+////  JBBApp
+////
+////  Created by Александр Филимонов on 25.05.2018.
+////  Copyright © 2018 Alex Filimonov. All rights reserved.
+////
 //
-//  SchemeController.swift
-//  JBBApp
+//import UIKit
 //
-//  Created by Александр Филимонов on 25.05.2018.
-//  Copyright © 2018 Alex Filimonov. All rights reserved.
+//class SchemeController: UIViewController {
 //
-
-import UIKit
-
-//class SchemeController: UIViewController, UIScrollViewDelegate {
+//    var scheme: SchemeNew?
 //
-//    var scheme: Scheme?
-//    
-//    
+//
 //    @IBOutlet weak var cellsInfoTableView: UITableView!
-//    
+//
 //    @IBOutlet weak var scrollView: UIScrollView!
-//    lazy var drawRectangle: DrawRectangle! = {
-//        var VC = DrawRectangle(frame: CGRect.zero)
-//        VC.scheme = scheme
-//        return VC
-//    }()
-//    
+////    lazy var drawRectangle: DrawRectangle! = {
+////        var VC = DrawRectangle(frame: CGRect.zero)
+////        VC.scheme = scheme
+////        return VC
+////    }()
+//
 //    @IBOutlet weak var cellsScrollView: UIScrollView!
-//    lazy var cells: Cells! = {
-//        var VC = Cells(frame: CGRect.zero)
-//        VC.scheme = scheme
-//        return VC
-//    }()
-//    
+////    lazy var cells: Cells! = {
+////        var VC = Cells(frame: CGRect.zero)
+////        VC.scheme = scheme
+////        return VC
+////    }()
+//
 //    @objc func clickOnButton(button: UIButton) {
 //    }
 //
 //    override func viewDidLoad() {
 //        super.viewDidLoad()
-//        
+//
 //        cellsInfoTableView.delegate = self
 //        cellsInfoTableView.dataSource = self
 //        cellsInfoTableView.rowHeight = 24.0
@@ -51,15 +51,15 @@ import UIKit
 //        button.setTitleColor(.black, for: .normal)
 //        button.addTarget(self, action: #selector(self.clickOnButton), for: .touchUpInside)
 //        self.navigationItem.titleView = button
-//        
-//        
-//        
+//
+//
+//
 //        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "TabBarColors"), style: .plain, target: nil, action: nil)
-//        
+//
 //        scrollView.addSubview(drawRectangle)
 //        // cellsScrollView.addSubview(cells)
-//        
-//        
+//
+//
 //        let scrollViewFrame = scrollView.frame
 //        print("frame: \(scrollViewFrame)")
 //        let scaleWidth = scrollViewFrame.size.width / scrollView.contentSize.width
@@ -68,42 +68,42 @@ import UIKit
 //        print("min scale: \(minScale)")
 //        //scrollView.minimumZoomScale = minScale
 //        scrollView.minimumZoomScale = 0.2
-//        
+//
 //        scrollView.maximumZoomScale = 1.0
 //        //scrollView.zoomScale = minScale
 //        scrollView.zoomScale = 0.2
-//        
+//
 //        scrollView.delegate = self
 //    }
-//    
+//
 //    override func viewDidLayoutSubviews() {
-//        
+//
 //        drawRectangle.setNeedsDisplay()
 //        let size = CGSize(width: drawRectangle.cellWidth * CGFloat(drawRectangle.colsCount), height: drawRectangle.cellHeight * CGFloat(drawRectangle.rowsCount))
 //        scrollView.contentSize = size
 //        drawRectangle.frame = CGRect(origin: .zero, size: size)
-//        
+//
 //        cells.setNeedsDisplay()
-//        
+//
 //        // let size2 = CGSize(width: cellsScrollView.frame.width, height: newHeight)
 //        // cellsScrollView.contentSize = size
 //        cells.frame = CGRect(origin: .zero, size: size)
 //        cells.backgroundColor = UIColor.white
-//        
+//
 //    }
-//    
+//
 //    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
 //        return drawRectangle
 //    }
-//    
+//
 //    func scrollViewDidZoom(_ scrollView: UIScrollView) {
-//        
+//
 ////        print("drawRectangle.center: \(drawRectangle.center)")
 ////        print("scrollView.center: \(scrollView.center)")
-////        
+////
 ////        //        drawRectangle.center = scrollView.center
 ////        drawRectangle.center = CGPoint(x: 550, y: -50)
-//        
+//
 //        print("scrollviewdidzoom")
 //    }
 //}
@@ -113,10 +113,10 @@ import UIKit
 //        guard let scheme = scheme else { return 0 }
 //        return scheme.groupedRows.count
 //    }
-//    
+//
 //    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 //        let cell = tableView.dequeueReusableCell(withIdentifier: "infoReusableCell", for: indexPath) as? InfoCellTableView
-//        
+//
 ////        if let cell = cell {
 ////            //cell.cell = scheme?.rowsInOrder[indexPath.row]
 ////
@@ -128,25 +128,30 @@ import UIKit
 ////        cell?.colorView.backgroundColor = scheme?.groupedRows[indexPath.row].0.color
 ////        cell?.colorView.layer.borderWidth = 0.5
 ////        cell?.colorView.layer.borderColor = UIColor.black.cgColor
-//        
+//
 //        return cell!
-//        
+//
 //    }
-//    
+//
 //    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
 //        let cell = cell as? InfoCellTableView
 //        let curGroupedRow = scheme!.groupedRows[indexPath.row]
-//        
-//        
+//
+//
 //        cell?.label.text = String(curGroupedRow.1)
-//        
+//
 ////        cell?.colorView.backgroundColor = curGroupedRow.0.color
 ////        cell?.colorView.layer.borderWidth = 0.5
 ////        cell?.colorView.layer.borderColor = UIColor.black.cgColor
-//        
+//
 //    }
-//    
-//    
-//    
-//    
+//
+//
+//
+//
+//}
+//
+//
+//extension SchemeController: UIScrollViewDelegate {
+//
 //}

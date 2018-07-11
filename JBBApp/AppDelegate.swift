@@ -164,7 +164,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 (row 1 1 1 1 1 1 1 1 1 3 2 2 2 2 1 1 1 1 1 1 1 1 1 1)))
         """
         let parser = JBBParser(str: schemeStr)
-        let scheme = SchemeNew(with: "Геометрия", cells: parser.cells, colors: parser.colors)
+        let scheme = SchemeNew(with: "Геометрия", cells: parser.cells, numberOfCellsInRow: parser.numberOfCellsInRow, colors: parser.colors)
+        print(scheme.cellsWithOffset)
+        
+        let storyboard = UIStoryboard(name: "Scheme", bundle: nil)
+        let initialViewController = storyboard.instantiateViewController(withIdentifier: "SchemeControllerNewID") as! SchemeControllerNew
+        initialViewController.scheme = scheme
+        
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        self.window?.makeKeyAndVisible()
+        
+        self.window?.rootViewController = initialViewController
         
         return true
     }

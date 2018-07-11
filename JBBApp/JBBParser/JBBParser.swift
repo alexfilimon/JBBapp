@@ -14,6 +14,7 @@ class JBBParser {
     var name: String?
     var colors: [UIColor]
     var cells: [Int]
+    var numberOfCellsInRow: Int
     
     init(str: String) {
         
@@ -39,6 +40,8 @@ class JBBParser {
         }
         
         rows.reverse()
+        
+        self.numberOfCellsInRow = rows[0].count
         
         cells = []
         for row in rows {

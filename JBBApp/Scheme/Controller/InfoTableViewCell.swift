@@ -9,10 +9,16 @@
 import UIKit
 
 class InfoTableViewCell: UITableViewCell {
+    
+    @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var colorView: UIView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        colorView.layer.borderColor = UIColor.gray.cgColor
+        colorView.layer.borderWidth = 0.5
+        colorView.layer.cornerRadius = 3.0
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
