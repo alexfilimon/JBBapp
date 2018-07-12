@@ -12,7 +12,7 @@ class CustomColor {
     
     var defaultName: String! = nil
     var customName: String?
-    let colorValue: UIColor
+    var colorValue: UIColor
     
     init(with color: UIColor, name customName: String? = nil) {
         self.colorValue = color

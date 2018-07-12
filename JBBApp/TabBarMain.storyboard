@@ -71,10 +71,10 @@
             </objects>
             <point key="canvasLocation" x="258" y="-191"/>
         </scene>
-        <!--SchemesList-->
+        <!--Scheme-->
         <scene sceneID="nJc-wd-SyY">
             <objects>
-                <viewControllerPlaceholder storyboardName="SchemesList" id="cWu-Uf-PjX" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Scheme" id="cWu-Uf-PjX" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="t8I-fn-w9c"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HYf-M5-qtr" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -73,17 +73,13 @@
                                     <outlet property="delegate" destination="ad8-Sl-WSw" id="8ip-Or-xzH"/>
                                 </connections>
                             </tableView>
-                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="VbE-bt-UTm">
-                                <rect key="frame" x="213" y="116" width="94" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </stepper>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MMf-a8-tpR">
-                                <rect key="frame" x="152" y="116" width="53" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QU2-IO-XsA">
+                                <rect key="frame" x="137" y="518" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="changeColor:" destination="ad8-Sl-WSw" eventType="touchUpInside" id="Lt5-jH-urj"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -94,18 +90,15 @@
                             <constraint firstItem="TAA-Zy-kzV" firstAttribute="leading" secondItem="uta-6o-5or" secondAttribute="leading" constant="70" id="G6Y-u1-V9C"/>
                             <constraint firstItem="TAA-Zy-kzV" firstAttribute="top" secondItem="uta-6o-5or" secondAttribute="top" id="mIm-FX-lXA"/>
                             <constraint firstItem="uta-6o-5or" firstAttribute="bottom" secondItem="mcP-aA-EJA" secondAttribute="bottom" constant="70" id="rAb-Aj-atp"/>
+                            <constraint firstItem="uta-6o-5or" firstAttribute="bottom" secondItem="QU2-IO-XsA" secondAttribute="bottom" constant="20" id="w34-6T-bgg"/>
+                            <constraint firstItem="QU2-IO-XsA" firstAttribute="centerX" secondItem="uta-6o-5or" secondAttribute="centerX" id="x3p-Rq-Ul6"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="uta-6o-5or"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="VbE-bt-UTm"/>
-                                <exclude reference="MMf-a8-tpR"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="bVa-dL-0fC"/>
                     <connections>
                         <outlet property="cellsInfoTableView" destination="mcP-aA-EJA" id="6NV-RL-IAF"/>
+                        <outlet property="scrollView" destination="TAA-Zy-kzV" id="FNR-lc-6Zb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qwd-xl-Xh1" userLabel="First Responder" sceneMemberID="firstResponder"/>

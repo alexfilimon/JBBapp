@@ -15,24 +15,183 @@ class SchemeControllerNew: UIViewController {
     
     @IBOutlet weak var cellsInfoTableView: UITableView!
     
+    @IBOutlet weak var scrollView: UIScrollView!
     
-//    @IBOutlet weak var scrollView: UIScrollView!
+    lazy var drawRectangle: DrawRectangle! = {
+        var VC = DrawRectangle(frame: CGRect.zero)
+        VC.scheme = scheme
+        return VC
+    }()
+    
+    @IBAction func changeColor(_ sender: UIButton) {
+        scheme?.groupedCells[curGroup][0].isRead = true
+        cellsInfoTableView.reloadData()
+        curGroup = (curGroup + 1) % (scheme?.groupedCells.count)!
+    }
     
     // MARK: - Vars
     
     var scheme: SchemeNew?
+    var curGroup: Int = 0
     
     // MARK: - Life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let schemeStr =
+        """
+        (jbb
+            (version 1)
+            (author "lacemaker Mary")
+            (organization "")
+            (notes "")
+            (colors
+                (rgb 255 255 255)
+                (rgb 151 52 33)
+                (rgb 255 99 76)
+                (rgb 255 255 255))
+            (view
+                (draft-visible true)
+                (corrected-visible true)
+                (simulation-visible true)
+                (report-visible true)
+                (selected-tool "pencil")
+                (selected-color 1)
+                (zoom 2)
+                (scroll 0)
+                (shift 0)
+                (draw-colors true)
+                (draw-symbols false)
+                (symbols "·abcdefghijklmnopqrstuvwxyz+-/\\*"))
+            (model
+                (row 2 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 2 2)
+                (row 2 2 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 2)
+                (row 2 2 1 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 2)
+                (row 2 2 2 1 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3)
+                (row 2 2 2 1 1 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3)
+                (row 2 2 2 2 1 1 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3)
+                (row 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 3 3 3)
+                (row 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 3 3)
+                (row 3 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 3 3)
+                (row 3 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 3)
+                (row 3 3 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 3)
+                (row 3 3 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2)
+                (row 3 3 3 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2)
+                (row 3 3 3 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2)
+                (row 2 3 3 3 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2)
+                (row 2 3 3 3 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2)
+                (row 2 2 3 3 3 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2)
+                (row 2 2 3 3 3 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2)
+                (row 2 2 2 3 3 3 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2)
+                (row 2 2 2 3 3 3 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2)
+                (row 2 2 2 2 3 3 3 3 2 2 2 1 1 1 1 1 1 1 1 1 1 1 1 1)
+                (row 1 1 1 1 1 3 3 3 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1 1)
+                (row 1 1 1 1 1 1 3 3 3 2 2 2 1 1 1 1 1 1 1 1 1 1 1 1)
+                (row 1 1 1 1 1 1 1 3 3 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1)
+                (row 1 1 1 1 1 1 1 1 3 3 2 2 2 1 1 1 1 1 1 1 1 1 1 1)
+                (row 1 1 1 1 1 1 1 1 1 3 2 2 2 2 1 1 1 1 1 1 1 1 1 1)
+                (row 2 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 2 2)
+                (row 2 2 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 2)
+                (row 2 2 1 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 2)
+                (row 2 2 2 1 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3)
+                (row 2 2 2 1 1 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3)
+                (row 2 2 2 2 1 1 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3)
+                (row 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 3 3 3)
+                (row 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 3 3)
+                (row 3 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 3 3)
+                (row 3 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 3)
+                (row 3 3 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 3)
+                (row 3 3 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2)
+                (row 3 3 3 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2)
+                (row 3 3 3 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2)
+                (row 2 3 3 3 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2)
+                (row 2 3 3 3 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2)
+                (row 2 2 3 3 3 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2)
+                (row 2 2 3 3 3 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2)
+                (row 2 2 2 3 3 3 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2)
+                (row 2 2 2 3 3 3 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2)
+                (row 2 2 2 2 3 3 3 3 2 2 2 1 1 1 1 1 1 1 1 1 1 1 1 1)
+                (row 1 1 1 1 1 3 3 3 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1 1)
+                (row 1 1 1 1 1 1 3 3 3 2 2 2 1 1 1 1 1 1 1 1 1 1 1 1)
+                (row 1 1 1 1 1 1 1 3 3 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1)
+                (row 1 1 1 1 1 1 1 1 3 3 2 2 2 1 1 1 1 1 1 1 1 1 1 1)
+                (row 1 1 1 1 1 1 1 1 1 3 2 2 2 2 1 1 1 1 1 1 1 1 1 1)
+                (row 2 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 2 2)
+                (row 2 2 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 2)
+                (row 2 2 1 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 2)
+                (row 2 2 2 1 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3)
+                (row 2 2 2 1 1 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3)
+                (row 2 2 2 2 1 1 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3)
+                (row 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 3 3 3)
+                (row 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 3 3)
+                (row 3 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 3 3)
+                (row 3 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 3)
+                (row 3 3 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 3)
+                (row 3 3 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2)
+                (row 3 3 3 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2)
+                (row 3 3 3 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2)
+                (row 2 3 3 3 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2)
+                (row 2 3 3 3 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2)
+                (row 2 2 3 3 3 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2)
+                (row 2 2 3 3 3 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2)
+                (row 2 2 2 3 3 3 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2)
+                (row 2 2 2 3 3 3 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2)
+                (row 2 2 2 2 3 3 3 3 2 2 2 1 1 1 1 1 1 1 1 1 1 1 1 1)
+                (row 1 1 1 1 1 3 3 3 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1 1)
+                (row 1 1 1 1 1 1 3 3 3 2 2 2 1 1 1 1 1 1 1 1 1 1 1 1)
+                (row 1 1 1 1 1 1 1 3 3 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1)
+                (row 1 1 1 1 1 1 1 1 3 3 2 2 2 1 1 1 1 1 1 1 1 1 1 1)
+                (row 1 1 1 1 1 1 1 1 1 3 2 2 2 2 1 1 1 1 1 1 1 1 1 1)
+                (row 2 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 2 2)
+                (row 2 2 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 2)
+                (row 2 2 1 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 2)
+                (row 2 2 2 1 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3)
+                (row 2 2 2 1 1 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3)
+                (row 2 2 2 2 1 1 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3)
+                (row 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 3 3 3)
+                (row 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 3 3)
+                (row 3 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 3 3)
+                (row 3 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 3)
+                (row 3 3 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 3)
+                (row 3 3 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2)
+                (row 3 3 3 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2)
+                (row 3 3 3 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2)
+                (row 2 3 3 3 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2)
+                (row 2 3 3 3 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2)
+                (row 2 2 3 3 3 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2)
+                (row 2 2 3 3 3 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2)
+                (row 2 2 2 3 3 3 3 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2 2)
+                (row 2 2 2 3 3 3 3 2 2 2 2 1 1 1 1 2 2 2 2 2 2 2 2 2)
+                (row 2 2 2 2 3 3 3 3 2 2 2 1 1 1 1 1 1 1 1 1 1 1 1 1)
+                (row 1 1 1 1 1 3 3 3 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1 1)
+                (row 1 1 1 1 1 1 3 3 3 2 2 2 1 1 1 1 1 1 1 1 1 1 1 1)
+                (row 1 1 1 1 1 1 1 3 3 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1)
+                (row 1 1 1 1 1 1 1 1 3 3 2 2 2 1 1 1 1 1 1 1 1 1 1 1)
+                (row 1 1 1 1 1 1 1 1 1 3 2 2 2 2 1 1 1 1 1 1 1 1 1 1)))
+        """
+        let parser = JBBParser(str: schemeStr)
+        scheme = SchemeNew(with: "Геометрия", cells: parser.cells, numberOfCellsInRow: parser.numberOfCellsInRow, colors: parser.colors)
+        
         cellsInfoTableView.delegate = self
         cellsInfoTableView.dataSource = self
         cellsInfoTableView.rowHeight = 24.0
         
-//        cellsInfoTableView.register(InfoTableViewCell.self, forCellReuseIdentifier: "tableViewCell")
+        scrollView.addSubview(drawRectangle)
+        
         cellsInfoTableView.register(UINib(nibName: "InfoTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "InfoIDCell")
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        drawRectangle.setNeedsDisplay()
+        let size = CGSize(width: drawRectangle.cellWidth * CGFloat(drawRectangle.colsCount), height: drawRectangle.cellHeight * CGFloat(drawRectangle.rowsCount))
+        print("size: \(size)")
+        scrollView.contentSize = size
+        drawRectangle.frame = CGRect(origin: .zero, size: size)
+        
+        
     }
     
 }
@@ -51,7 +210,8 @@ extension SchemeControllerNew: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "InfoIDCell", for: indexPath) as! InfoTableViewCell
         if let scheme = scheme {
             cell.label.text = String(scheme.groupedCells[indexPath.row].count)
-            cell.colorView.backgroundColor = scheme.groupedCells[indexPath.row][0].color.colorValue
+            cell.isRead = scheme.groupedCells[indexPath.row][0].isRead
+            cell.colorView.backgroundColor =  scheme.groupedCells[indexPath.row][0].color.colorValue
         }
         return cell
     }

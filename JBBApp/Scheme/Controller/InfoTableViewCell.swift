@@ -12,6 +12,19 @@ class InfoTableViewCell: UITableViewCell {
     
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var colorView: UIView!
+    @IBOutlet weak var readView: UIView!
+    var isRead: Bool? {
+        didSet {
+            if let isRead = isRead {
+                if isRead {
+                    readView.backgroundColor = UIColor.black
+                    //                readView.layer.cornerRadius = 2.5
+                } else {
+                    readView.backgroundColor = UIColor.red
+                }
+            }
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -19,6 +32,14 @@ class InfoTableViewCell: UITableViewCell {
         colorView.layer.borderColor = UIColor.gray.cgColor
         colorView.layer.borderWidth = 0.5
         colorView.layer.cornerRadius = 3.0
+        
+        
+    }
+    
+    override func draw(_ rect: CGRect) {
+//        super.draw(rect)
+        
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
