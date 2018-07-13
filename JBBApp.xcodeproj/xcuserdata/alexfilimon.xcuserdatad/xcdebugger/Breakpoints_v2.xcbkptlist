@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JBBApp/Scheme/Controller/SchemeControllerNew.swift"
-            timestampString = "553075321.806941"
+            timestampString = "553155183.827875"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
+            startingLineNumber = "158"
+            endingLineNumber = "158"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -27,11 +27,11 @@
             condition = "isRead == true"
             continueAfterRunningActions = "No"
             filePath = "JBBApp/Scheme/Controller/InfoTableViewCell.swift"
-            timestampString = "553074597.409439"
+            timestampString = "553099994.106956"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
             landmarkName = "draw(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -43,12 +43,44 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JBBApp/Scheme/Controller/SchemeControllerNew.swift"
-            timestampString = "553075321.807055"
+            timestampString = "553155183.82839"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
             landmarkName = "viewDidLayoutSubviews()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "JBBApp/New Models/SchemeNew.swift"
+            timestampString = "553099994.107574"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "getCellRow(by:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "JBBApp/Scheme/Controller/SchemeControllerNew.swift"
+            timestampString = "553155183.8288029"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
+            landmarkName = "speechSynthesizer(_:didStart:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

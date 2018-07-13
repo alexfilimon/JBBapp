@@ -12,7 +12,6 @@
 		C15E10A420F67884001005D3 /* SchemeControllerNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15E10A320F67884001005D3 /* SchemeControllerNew.swift */; };
 		C15E10A920F681B2001005D3 /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15E10A720F681B2001005D3 /* InfoTableViewCell.swift */; };
 		C15E10AA20F681B2001005D3 /* InfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C15E10A820F681B2001005D3 /* InfoTableViewCell.xib */; };
-		C15F0A5720BFCEC4002BED6F /* Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15F0A5620BFCEC4002BED6F /* Cells.swift */; };
 		C19EC14720BFED230069BCEF /* SchemeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19EC14620BFED230069BCEF /* SchemeCell.swift */; };
 		C1AE266120F33B53001B60F8 /* StringProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AE266020F33B53001B60F8 /* StringProtocol.swift */; };
 		C1BFA49120C64CF700FA366C /* SchemesListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BFA49020C64CF700FA366C /* SchemesListModel.swift */; };
@@ -43,7 +42,6 @@
 		C15E10A320F67884001005D3 /* SchemeControllerNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemeControllerNew.swift; sourceTree = "<group>"; };
 		C15E10A720F681B2001005D3 /* InfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
 		C15E10A820F681B2001005D3 /* InfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoTableViewCell.xib; sourceTree = "<group>"; };
-		C15F0A5620BFCEC4002BED6F /* Cells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cells.swift; sourceTree = "<group>"; };
 		C19EC14620BFED230069BCEF /* SchemeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemeCell.swift; sourceTree = "<group>"; };
 		C1AE266020F33B53001B60F8 /* StringProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringProtocol.swift; sourceTree = "<group>"; };
 		C1BFA49020C64CF700FA366C /* SchemesListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemesListModel.swift; sourceTree = "<group>"; };
@@ -220,7 +218,6 @@
 				C15E10A320F67884001005D3 /* SchemeControllerNew.swift */,
 				C1FCB3D920B7BA7A001EB3AD /* SchemeController.swift */,
 				C1FCB3D520B7B99B001EB3AD /* DrawRectangle.swift */,
-				C15F0A5620BFCEC4002BED6F /* Cells.swift */,
 				C15E10A720F681B2001005D3 /* InfoTableViewCell.swift */,
 			);
 			path = Controller;
@@ -358,7 +355,6 @@
 				C1DEEF8920C3AB38006AFB7C /* SchemesListController.swift in Sources */,
 				C1C7639120E8CA9400F91E02 /* CustomColor.swift in Sources */,
 				C1AE266120F33B53001B60F8 /* StringProtocol.swift in Sources */,
-				C15F0A5720BFCEC4002BED6F /* Cells.swift in Sources */,
 				C1BFA4A520C6553600FA366C /* SchemeMO+CoreDataProperties.swift in Sources */,
 				C1CFAEB620B58595008A4CCD /* JBBParser.swift in Sources */,
 				C1CFAEB420B5845B008A4CCD /* Scheme.swift in Sources */,

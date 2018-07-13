@@ -83,6 +83,15 @@ class SchemeNew {
         
     }
     
-    
+    func getCellRow(by id: Int) -> Int? {
+        for (indexRow, row) in cellsWithOffset.enumerated() {
+            for cell in row.cells {
+                if cell.id == id {
+                    return indexRow
+                }
+            }
+        }
+        return nil
+    }
     
 }

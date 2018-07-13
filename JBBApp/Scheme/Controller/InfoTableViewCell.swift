@@ -17,12 +17,21 @@ class InfoTableViewCell: UITableViewCell {
         didSet {
             if let isRead = isRead {
                 if isRead {
-                    readView.backgroundColor = UIColor.black
-                    //                readView.layer.cornerRadius = 2.5
+                    guard let color = color else { return }
+                    if color.isLight()! {
+                        readView.backgroundColor = UIColor.black
+                    } else {
+                        readView.backgroundColor = UIColor.white
+                    }
                 } else {
-                    readView.backgroundColor = UIColor.red
+                    readView.backgroundColor = UIColor.clear
                 }
             }
+        }
+    }
+    var color: UIColor? {
+        didSet {
+//            guard let color = color else { return }
         }
     }
 

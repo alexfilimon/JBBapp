@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import AVFoundation
+import AVKit
 
 class SchemeControllerNew: UIViewController {
     
@@ -24,19 +26,35 @@ class SchemeControllerNew: UIViewController {
     }()
     
     @IBAction func changeColor(_ sender: UIButton) {
-        for item in (scheme?.groupedCells[curGroup])! {
+        
+        
+    }
+    
+    func makeStep() {
+        guard let scheme = scheme else { return }
+        for item in scheme.groupedCells[curGroup] {
             item.isRead = true
         }
-//        scheme?.groupedCells[curGroup][0].isRead = true
+        cellsInfoTableView.scrollToRow(at: IndexPath(row: curGroup, section: 0), at: .middle, animated: true)
+        let curFirstCell = scheme.groupedCells[curGroup][0]
+        scrollView.setContentOffset(CGPoint(x: 0, y: drawRectangle.cellHeight * CGFloat(scheme.getCellRow(by: curFirstCell.id)!) - drawRectangle.cellHeight), animated: true)
+        
         cellsInfoTableView.reloadData()
         drawRectangle.setNeedsDisplay()
-        curGroup = (curGroup + 1) % (scheme?.groupedCells.count)!
+        
+        cellsReady += scheme.groupedCells[curGroup].count
+        progress = Float(cellsReady) / Float(scheme.cells.count)
+        progressBar.progress = progress
+        
+        curGroup = (curGroup + 1) % (scheme.groupedCells.count)
     }
     
     // MARK: - Vars
     
     var scheme: SchemeNew?
     var curGroup: Int = 0
+    var progress: Float = 0
+    var cellsReady: Int = 0
     
     // MARK: - Life cycle
     
@@ -49,7 +67,10 @@ class SchemeControllerNew: UIViewController {
         
         scrollView.addSubview(drawRectangle)
         
+        speechSynthesizer.delegate = self
+        
         cellsInfoTableView.register(UINib(nibName: "InfoTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "InfoIDCell")
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -64,6 +85,56 @@ class SchemeControllerNew: UIViewController {
         
     }
     
+    @IBOutlet weak var progressBar: UIProgressView!
+    let speechSynthesizer = AVSpeechSynthesizer()
+    
+    @IBAction func play(_ sender: UIButton) {
+        guard let scheme = scheme else { return }
+        if speechSynthesizer.isPaused {
+            speechSynthesizer.continueSpeaking()
+        } else {
+            for row in scheme.groupedCells {
+                let str: String = row[0].color.defaultName! + " " + String(row.count)
+                let speechUtterance = AVSpeechUtterance(string: str)
+                
+                speechUtterance.rate = 0.25
+                speechUtterance.pitchMultiplier = 0.25
+                speechUtterance.volume = 0.75
+                speechUtterance.postUtteranceDelay = 0.005
+                
+                progress = 0
+                cellsReady = 0
+                
+                speechSynthesizer.speak(speechUtterance)
+            }
+        }
+        
+    }
+    @IBAction func pause(_ sender: UIButton) {
+        
+        speechSynthesizer.pauseSpeaking(at: .immediate)
+        
+    }
+    @IBAction func stop(_ sender: UIButton) {
+        
+        speechSynthesizer.stopSpeaking(at: AVSpeechBoundary.immediate)
+        
+    }
+    
+}
+
+extension SchemeControllerNew: AVSpeechSynthesizerDelegate {
+//    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
+//        <#code#>
+//    }
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didStart utterance: AVSpeechUtterance) {
+        print("didStartSpeech: \(utterance.speechString)")
+        makeStep()
+    }
+//    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, willSpeakRangeOfSpeechString characterRange: NSRange, utterance: AVSpeechUtterance) {
+//        print("speak \(characterRange), \(utterance)")
+//        // {location: _, length: _}
+//    }
 }
 
 extension SchemeControllerNew: UITableViewDataSource, UITableViewDelegate {
@@ -80,6 +151,7 @@ extension SchemeControllerNew: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "InfoIDCell", for: indexPath) as! InfoTableViewCell
         if let scheme = scheme {
             cell.label.text = String(scheme.groupedCells[indexPath.row].count)
+            cell.color = scheme.groupedCells[indexPath.row][0].color.colorValue
             cell.isRead = scheme.groupedCells[indexPath.row][0].isRead
             cell.colorView.backgroundColor =  scheme.groupedCells[indexPath.row][0].color.colorValue
         }

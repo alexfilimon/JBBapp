@@ -27,4 +27,15 @@ extension UIColor {
             return nil
         }
     }
+    
+    func isLight() -> Bool? {
+        guard let rgb = rgb() else { return nil }
+        let newRGB = (red: 0.299 * Double(rgb.red), green: 0.587 * Double(rgb.green), blue: 0.114 * Double(rgb.blue))
+        let newRGBsum = newRGB.red + newRGB.green + newRGB.blue
+        if (1.0 - newRGBsum / 255.0 < 0.5) {
+            return true
+        } else {
+            return false
+        }
+    }
 }

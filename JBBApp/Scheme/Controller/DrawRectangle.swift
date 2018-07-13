@@ -43,9 +43,11 @@ class DrawRectangle: UIView {
                 // рисуем квадрат(ячейку)
                 drawRect(x: cellWidth * CGFloat(cellIndex) + cellWidth * CGFloat(row.offset), y: cellHeight * CGFloat(rowIndex), color: cell.color.colorValue.cgColor)
                 if cell.isRead {
+                    
                     drawPoint(
                         x: cellWidth * CGFloat(cellIndex) + cellWidth * CGFloat(row.offset) + cellWidth * 0.5,
-                        y: cellHeight * CGFloat(rowIndex) + cellHeight * 0.5
+                        y: cellHeight * CGFloat(rowIndex) + cellHeight * 0.5,
+                        isLight: cell.color.colorValue.isLight()!
                     )
                 }
             }
@@ -76,13 +78,17 @@ class DrawRectangle: UIView {
         context?.fill(rectangle)
     }
     
-    func drawPoint(x: CGFloat, y: CGFloat) {
+    func drawPoint(x: CGFloat, y: CGFloat, isLight: Bool) {
         let context = UIGraphicsGetCurrentContext()
         
         let rectangle = CGRect(x: x-1, y: y-1, width: 2, height: 2)
         context?.addRect(rectangle)
         context?.strokePath()
-        context?.setFillColor(UIColor.black.cgColor)
+        if isLight {
+            context?.setFillColor(UIColor.black.cgColor)
+        } else {
+            context?.setFillColor(UIColor.white.cgColor)
+        }
         context?.fill(rectangle)
     }
 
