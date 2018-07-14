@@ -56,6 +56,11 @@ class SchemeNew {
     let offset: Float
     let numberOfCellsInRow: Int
     let colors: [CustomColor]
+    var curGroup: Int = 0 // position of pointer in groupedCells
+    var cellsReady: Int {
+        return cells.filter{ $0.isRead == true }.count
+    } // number of cells with isRead = true
+    var delegate: SchemeNewDelegate?
     
     init(with name: String,
          cells: [Int],
@@ -94,4 +99,29 @@ class SchemeNew {
         return nil
     }
     
+    func changeProgress(indexOfGroupedCells: Int) {
+        
+        guard indexOfGroupedCells < groupedCells.count && indexOfGroupedCells >= 0 else { return }
+        
+        for group in groupedCells[0..<indexOfGroupedCells] {
+            for cell in group {
+                cell.isRead = true
+            }
+        }
+        
+        for group in groupedCells[indexOfGroupedCells...] {
+            for cell in group {
+                cell.isRead = false
+            }
+        }
+        
+        curGroup = indexOfGroupedCells
+        
+        delegate?.didProgressChanged()
+    }
+    
+}
+
+protocol SchemeNewDelegate {
+    func didProgressChanged()
 }
