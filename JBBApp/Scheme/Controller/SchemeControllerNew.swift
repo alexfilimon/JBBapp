@@ -11,11 +11,13 @@ import UIKit
 import AVFoundation
 import AVKit
 
-class SchemeControllerNew: UIViewController, UIScrollViewDelegate {
+class SchemeControllerNew: UIViewController {
     
-    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return drawRectangle
-    }
+    
+    
+    
+    
+    
     
     // MARK: - Views
     
@@ -42,7 +44,7 @@ class SchemeControllerNew: UIViewController, UIScrollViewDelegate {
         }
         cellsInfoTableView.scrollToRow(at: IndexPath(row: scheme.curGroup, section: 0), at: .middle, animated: true)
         let curFirstCell = scheme.groupedCells[scheme.curGroup][0]
-        scrollView.setContentOffset(CGPoint(x: 0, y: drawRectangle.cellHeight * scrollView.zoomScale * CGFloat(scheme.getCellRow(by: curFirstCell.id)!) - drawRectangle.cellHeight * scrollView.zoomScale), animated: true)
+        scrollView.setContentOffset(CGPoint(x: 0, y: drawRectangle.cellHeight * scrollView.zoomScale * CGFloat(scheme.getNumOfRow(cellId: curFirstCell.id)!) - drawRectangle.cellHeight * scrollView.zoomScale), animated: true)
         
         cellsInfoTableView.reloadData()
         drawRectangle.setNeedsDisplay()
@@ -92,6 +94,25 @@ class SchemeControllerNew: UIViewController, UIScrollViewDelegate {
         
         setupScrollViewZoom()
     }
+    
+    
+    @IBAction func reverseScheme(_ sender: UIButton) {
+        let alert = UIAlertController(title: "Вы точно хотите перевернуть схему?", message: "Если вы сделаете это, то вы потеряете весь прогресс", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Нет", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Да", style: .default, handler: { (action) in
+            self.scheme?.reverse()
+            
+            self.cellsInfoTableView.reloadData()
+            self.drawRectangle.setNeedsDisplay()
+        }))
+        present(alert, animated: true, completion: nil)
+        
+    }
+    
+    func reloadTableAndDraw() {
+        
+    }
+    
     @IBOutlet weak var playPauseButton: UIButton!
     
     @IBOutlet weak var progressLabel: UILabel!
@@ -131,16 +152,6 @@ class SchemeControllerNew: UIViewController, UIScrollViewDelegate {
 //        }
         
     }
-    @IBAction func pause(_ sender: UIButton) {
-        
-        speechSynthesizer.pauseSpeaking(at: AVSpeechBoundary.word)
-        
-    }
-    @IBAction func stop(_ sender: UIButton) {
-        
-        speechSynthesizer.stopSpeaking(at: AVSpeechBoundary.word)
-        
-    }
     
     func setupScrollViewZoom() {
         let scrollViewFrame = scrollView.frame
@@ -157,9 +168,7 @@ class SchemeControllerNew: UIViewController, UIScrollViewDelegate {
 //        scrollView.zoomScale = minScale
     }
     
-    func scrollViewDidZoom(_ scrollView: UIScrollView) {
-        drawRectangle.center.x = scrollView.frame.width / 2
-    }
+    
     
     func playPauseButton(isPlayImage: Bool) {
         if isPlayImage {
@@ -171,20 +180,24 @@ class SchemeControllerNew: UIViewController, UIScrollViewDelegate {
     
 }
 
+extension SchemeControllerNew: UIScrollViewDelegate {
+    
+    func scrollViewDidZoom(_ scrollView: UIScrollView) {
+        drawRectangle.center.x = scrollView.frame.width / 2
+    }
+    
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return drawRectangle
+    }
+    
+}
+
 extension SchemeControllerNew: AVSpeechSynthesizerDelegate {
+    
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
-        print("did finish speech: \(utterance.speechString)")
         makeStep()
     }
     
-//    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didStart utterance: AVSpeechUtterance) {
-//        print("didStartSpeech: \(utterance.speechString)")
-//
-//    }
-//    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, willSpeakRangeOfSpeechString characterRange: NSRange, utterance: AVSpeechUtterance) {
-//        print("speak \(characterRange), \(utterance)")
-//        // {location: _, length: _}
-//    }
 }
 
 extension SchemeControllerNew: UITableViewDataSource, UITableViewDelegate {
@@ -223,12 +236,12 @@ extension SchemeControllerNew: UITableViewDataSource, UITableViewDelegate {
 }
 
 extension SchemeControllerNew: SchemeNewDelegate{
-    func didProgressChanged() {
+    func scheme(didProgressChangedTo: Float) {
         guard let scheme = scheme else { return }
         
         cellsInfoTableView.scrollToRow(at: IndexPath(row: scheme.curGroup, section: 0), at: .middle, animated: true)
         let curFirstCell = scheme.groupedCells[scheme.curGroup][0]
-        scrollView.setContentOffset(CGPoint(x: 0, y: drawRectangle.cellHeight * scrollView.zoomScale * CGFloat(scheme.getCellRow(by: curFirstCell.id)!) - drawRectangle.cellHeight * scrollView.zoomScale), animated: true)
+        scrollView.setContentOffset(CGPoint(x: 0, y: drawRectangle.cellHeight * scrollView.zoomScale * CGFloat(scheme.getNumOfRow(cellId: curFirstCell.id)!) - drawRectangle.cellHeight * scrollView.zoomScale), animated: true)
         
         cellsInfoTableView.reloadData()
         drawRectangle.setNeedsDisplay()

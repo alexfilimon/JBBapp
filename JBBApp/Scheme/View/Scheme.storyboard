@@ -85,6 +85,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KEn-xM-yqe">
                                         <rect key="frame" x="0.0" y="0.0" width="106.5" height="67"/>
                                         <state key="normal" image="Speed"/>
+                                        <connections>
+                                            <action selector="reverseScheme:" destination="ad8-Sl-WSw" eventType="touchUpInside" id="k6K-vS-e11"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EQz-mP-0Ai">
                                         <rect key="frame" x="106.5" y="0.0" width="107" height="67"/>

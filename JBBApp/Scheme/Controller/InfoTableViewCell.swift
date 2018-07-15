@@ -45,16 +45,6 @@ class InfoTableViewCell: UITableViewCell {
         
     }
     
-    override func draw(_ rect: CGRect) {
-//        super.draw(rect)
-        
-        
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
+    
     
 }

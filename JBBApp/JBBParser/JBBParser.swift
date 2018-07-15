@@ -39,9 +39,12 @@ class JBBParser {
             return curNew.split(separator: " ").map { Int($0) ?? 0 }
         }
         
-        rows.reverse()
+//        rows.reverse()
+//        for row in rows {
+//            row.reverse()
+//        }
         
-        self.numberOfCellsInRow = rows[0].count
+        self.numberOfCellsInRow = rows[0].count + 1
         
         cells = []
         for row in rows {
@@ -49,6 +52,8 @@ class JBBParser {
                 cells.append(item)
             }
         }
+        
+//        cells.reverse()
         
         name = nil
     }

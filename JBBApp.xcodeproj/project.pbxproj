@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C121E5BB20FA68BB00223718 /* CustomColorsDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121E5BA20FA68BB00223718 /* CustomColorsDB.swift */; };
 		C13D0AE020EA1189000F3677 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13D0ADF20EA1188000F3677 /* UIColor.swift */; };
 		C13D0AE220EA11A0000F3677 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13D0AE120EA11A0000F3677 /* String.swift */; };
 		C15E10A420F67884001005D3 /* SchemeControllerNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15E10A320F67884001005D3 /* SchemeControllerNew.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C121E5BA20FA68BB00223718 /* CustomColorsDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColorsDB.swift; sourceTree = "<group>"; };
 		C13D0ADF20EA1188000F3677 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		C13D0AE120EA11A0000F3677 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		C15E10A320F67884001005D3 /* SchemeControllerNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemeControllerNew.swift; sourceTree = "<group>"; };
@@ -110,9 +112,10 @@
 		C1AE265F20F31A92001B60F8 /* New Models */ = {
 			isa = PBXGroup;
 			children = (
-				C19EC14620BFED230069BCEF /* SchemeCell.swift */,
 				C1C7638E20E8CA2300F91E02 /* SchemeNew.swift */,
+				C19EC14620BFED230069BCEF /* SchemeCell.swift */,
 				C1C7639020E8CA9400F91E02 /* CustomColor.swift */,
+				C121E5BA20FA68BB00223718 /* CustomColorsDB.swift */,
 			);
 			path = "New Models";
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C121E5BB20FA68BB00223718 /* CustomColorsDB.swift in Sources */,
 				C15E10A420F67884001005D3 /* SchemeControllerNew.swift in Sources */,
 				C13D0AE220EA11A0000F3677 /* String.swift in Sources */,
 				C19EC14720BFED230069BCEF /* SchemeCell.swift in Sources */,
