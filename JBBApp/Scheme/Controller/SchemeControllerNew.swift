@@ -65,6 +65,7 @@ class SchemeControllerNew: UIViewController {
                 speechUtterance.pitchMultiplier = 0.25
                 speechUtterance.volume = 0.75
                 speechUtterance.postUtteranceDelay = 0.005
+                speechUtterance.voice = AVSpeechSynthesisVoice(language: "ru-RU")
                 
                 speechSynthesizer.speak(speechUtterance)
             }
@@ -120,8 +121,8 @@ class SchemeControllerNew: UIViewController {
     }
     
     func scrollViewsToTop() {
-        cellsInfoTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .middle, animated: true)
-        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+//        cellsInfoTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .middle, animated: true)
+//        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
     
     func scrollViewsToCurrentGroup() {
@@ -129,7 +130,7 @@ class SchemeControllerNew: UIViewController {
         
         cellsInfoTableView.scrollToRow(at: IndexPath(row: scheme.curGroup-1, section: 0), at: .middle, animated: true)
         let curFirstCell = scheme.groupedCells[scheme.curGroup-1][0]
-        scrollView.setContentOffset(CGPoint(x: 0, y: drawRectangle.cellHeight * scrollView.zoomScale * CGFloat(scheme.getNumOfRow(cellId: curFirstCell.id)!) - drawRectangle.cellHeight * scrollView.zoomScale), animated: true)
+//        scrollView.setContentOffset(CGPoint(x: 0, y: drawRectangle.cellHeight * scrollView.zoomScale * CGFloat(scheme.getNumOfRow(cellId: curFirstCell.id)!) - drawRectangle.cellHeight * scrollView.zoomScale), animated: true)
     }
     
 }
