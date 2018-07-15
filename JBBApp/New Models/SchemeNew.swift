@@ -33,6 +33,9 @@ class SchemeNew {
                 retVal.append([item])
             }
         }
+        for groupIndex in retVal.indices {
+            retVal[groupIndex].reverse()
+        }
         return retVal.reversed()
     }()
     lazy var cellsWithOffset: [(cells: [SchemeCell], offset: Float)] = {
@@ -93,7 +96,13 @@ class SchemeNew {
     func reverse() {
         setToCells(isRead: false)
         cellsWithOffset.reverse()
+        
         groupedCells.reverse()
+        for groupIndex in groupedCells.indices {
+            groupedCells[groupIndex].reverse()
+        }
+        
+        delegate?.schemeReversed?()
     }
     
     func setToCells(isRead: Bool) {
@@ -135,10 +144,36 @@ class SchemeNew {
         delegate?.scheme(didProgressChangedTo: progress)
     }
     
+    func readNext() {
+        for item in groupedCells[curGroup] {
+            item.isRead = true
+        }
+        nextGroup()
+        delegate?.scheme(didProgressChangedTo: progress)
+    }
+    
+}
+
+// MARK: - Private methods
+
+private extension SchemeNew {
+    
+    func nextGroup() {
+        curGroup += 1
+        if curGroup == groupedCells.count {
+            delegate?.schemeFinished?()
+        }
+    }
+    
 }
 
 // MARK: - Delegate protocol
 
-protocol SchemeNewDelegate {
-    func scheme(didProgressChangedTo: Float)
+@objc protocol SchemeNewDelegate {
+    
+    func scheme(didProgressChangedTo newProgress: Float)
+
+    @objc optional func schemeFinished()
+    
+    @objc optional func schemeReversed()
 }

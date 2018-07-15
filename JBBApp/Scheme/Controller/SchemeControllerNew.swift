@@ -13,90 +13,30 @@ import AVKit
 
 class SchemeControllerNew: UIViewController {
     
+    // MARK: - Properties
     
-    
-    
-    
-    
-    
-    // MARK: - Views
-    
-    @IBOutlet weak var stopButton: UIButton!
-    @IBOutlet weak var cellsInfoTableView: UITableView!
-    
-    @IBOutlet weak var scrollView: UIScrollView!
-    
+    var scheme: SchemeNew?
+    let speechSynthesizer = AVSpeechSynthesizer()
     lazy var drawRectangle: DrawRectangle! = {
         var VC = DrawRectangle(frame: CGRect.zero)
         VC.scheme = scheme
         return VC
     }()
     
-    @IBAction func changeColor(_ sender: UIButton) {
-        makeStep()
-        
-    }
+    // MARK: - IBOutlets
     
-    func makeStep() {
-        guard let scheme = scheme else { return }
-        for item in scheme.groupedCells[scheme.curGroup] {
-            item.isRead = true
-        }
-        cellsInfoTableView.scrollToRow(at: IndexPath(row: scheme.curGroup, section: 0), at: .middle, animated: true)
-        let curFirstCell = scheme.groupedCells[scheme.curGroup][0]
-        scrollView.setContentOffset(CGPoint(x: 0, y: drawRectangle.cellHeight * scrollView.zoomScale * CGFloat(scheme.getNumOfRow(cellId: curFirstCell.id)!) - drawRectangle.cellHeight * scrollView.zoomScale), animated: true)
-        
-        cellsInfoTableView.reloadData()
-        drawRectangle.setNeedsDisplay()
-        
-        progress = Float(scheme.cellsReady) / Float(scheme.cells.count)
-        progressBar.progress = progress
-        progressLabel.text = String(Int(roundf(progress * 100))) + " %"
-        
-        scheme.curGroup = (scheme.curGroup + 1) % (scheme.groupedCells.count)
-    }
+    @IBOutlet weak var stopButton: UIButton!
+    @IBOutlet weak var cellsInfoTableView: UITableView!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var playPauseButton: UIButton!
+    @IBOutlet weak var progressLabel: UILabel!
+    @IBOutlet weak var progressBar: UIProgressView!
     
-    // MARK: - Vars
-    
-    var scheme: SchemeNew?
-    var progress: Float = 0
-    
-    // MARK: - Life cycle
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        cellsInfoTableView.delegate = self
-        cellsInfoTableView.dataSource = self
-        cellsInfoTableView.rowHeight = 24.0
-        
-        scrollView.addSubview(drawRectangle)
-        
-        speechSynthesizer.delegate = self
-        
-        cellsInfoTableView.register(UINib(nibName: "InfoTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "InfoIDCell")
-        
-        scrollView.delegate = self
-        
-//        stopButton.layer.cornerRadius = 1.0
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        scheme?.delegate = self
-        
-        drawRectangle.setNeedsDisplay()
-        let size = CGSize(width: drawRectangle.cellWidth * CGFloat(drawRectangle.colsCount), height: drawRectangle.cellHeight * CGFloat(drawRectangle.rowsCount))
-        print("size: \(size)")
-        scrollView.contentSize = size
-        drawRectangle.frame = CGRect(origin: .zero, size: size)
-        
-        setupScrollViewZoom()
-    }
-    
+    // MARK: - IBActions
     
     @IBAction func reverseScheme(_ sender: UIButton) {
+        guard !speechSynthesizer.isSpeaking else { return }
+        
         let alert = UIAlertController(title: "Вы точно хотите перевернуть схему?", message: "Если вы сделаете это, то вы потеряете весь прогресс", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Нет", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Да", style: .default, handler: { (action) in
@@ -108,16 +48,6 @@ class SchemeControllerNew: UIViewController {
         present(alert, animated: true, completion: nil)
         
     }
-    
-    func reloadTableAndDraw() {
-        
-    }
-    
-    @IBOutlet weak var playPauseButton: UIButton!
-    
-    @IBOutlet weak var progressLabel: UILabel!
-    @IBOutlet weak var progressBar: UIProgressView!
-    let speechSynthesizer = AVSpeechSynthesizer()
     
     @IBAction func play(_ sender: UIButton) {
         guard let scheme = scheme else { return }
@@ -136,39 +66,50 @@ class SchemeControllerNew: UIViewController {
                 speechUtterance.volume = 0.75
                 speechUtterance.postUtteranceDelay = 0.005
                 
-                progress = 0
-                //                cellsReady = 0
-                
                 speechSynthesizer.speak(speechUtterance)
             }
         }
         
-//        if speechSynthesizer.isPaused {
-//            playPauseButton(isPlayImage: true)
-//            speechSynthesizer.continueSpeaking()
-//        } else {
-//
-//
-//        }
+    }
+    
+    // MARK: - BaseClass
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
+        cellsInfoTableView.delegate = self
+        cellsInfoTableView.dataSource = self
+        cellsInfoTableView.rowHeight = 24.0
+        
+        scrollView.addSubview(drawRectangle)
+        
+        speechSynthesizer.delegate = self
+        
+        cellsInfoTableView.register(UINib(nibName: "InfoTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "InfoIDCell")
+        
+        scrollView.delegate = self
     }
     
-    func setupScrollViewZoom() {
-        let scrollViewFrame = scrollView.frame
-        print("frame: \(scrollViewFrame), contentSize: \(scrollView.contentSize)")
-        let scaleWidth = scrollViewFrame.size.width / scrollView.contentSize.width
-        let scaleHeight = scrollViewFrame.size.height / scrollView.contentSize.height
-        let minScale = min(scaleWidth, scaleHeight)
-        print("min scale: \(minScale)")
-        scrollView.minimumZoomScale = minScale
-//        scrollView.minimumZoomScale = 0.2
-
-        scrollView.maximumZoomScale = 1.0
-//        scrollView.zoomScale = 0.2
-//        scrollView.zoomScale = minScale
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        scheme?.delegate = self
+        
+        drawRectangle.setNeedsDisplay()
+        
+        let size = CGSize(width: drawRectangle.cellWidth * CGFloat(drawRectangle.colsCount), height: drawRectangle.cellHeight * CGFloat(drawRectangle.rowsCount))
+        scrollView.contentSize = size
+        drawRectangle.frame = CGRect(origin: .zero, size: size)
+        
+        setupScrollViewZoom()
     }
     
+    // MARK: - Internal methods
     
+    func reloadTableAndDraw() {
+        cellsInfoTableView.reloadData()
+        drawRectangle.setNeedsDisplay()
+    }
     
     func playPauseButton(isPlayImage: Bool) {
         if isPlayImage {
@@ -178,7 +119,38 @@ class SchemeControllerNew: UIViewController {
         }
     }
     
+    func scrollViewsToTop() {
+        cellsInfoTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .middle, animated: true)
+        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+    }
+    
+    func scrollViewsToCurrentGroup() {
+        guard let scheme = scheme else { return }
+        
+        cellsInfoTableView.scrollToRow(at: IndexPath(row: scheme.curGroup-1, section: 0), at: .middle, animated: true)
+        let curFirstCell = scheme.groupedCells[scheme.curGroup-1][0]
+        scrollView.setContentOffset(CGPoint(x: 0, y: drawRectangle.cellHeight * scrollView.zoomScale * CGFloat(scheme.getNumOfRow(cellId: curFirstCell.id)!) - drawRectangle.cellHeight * scrollView.zoomScale), animated: true)
+    }
+    
 }
+
+// MARK: - Private methods
+
+private extension SchemeControllerNew {
+    
+    func setupScrollViewZoom() {
+        let scrollViewFrame = scrollView.frame
+        let scaleWidth = scrollViewFrame.size.width / scrollView.contentSize.width
+        let scaleHeight = scrollViewFrame.size.height / scrollView.contentSize.height
+        let minScale = min(scaleWidth, scaleHeight)
+        
+        scrollView.minimumZoomScale = minScale
+        scrollView.maximumZoomScale = 1.0
+    }
+    
+}
+
+// MARK: - UIScrollViewDelegate
 
 extension SchemeControllerNew: UIScrollViewDelegate {
     
@@ -192,16 +164,20 @@ extension SchemeControllerNew: UIScrollViewDelegate {
     
 }
 
+// MARK: - AVSpeechSynthesizerDelegate
+
 extension SchemeControllerNew: AVSpeechSynthesizerDelegate {
     
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
-        makeStep()
+        guard let scheme = scheme else { return }
+        scheme.readNext()
     }
     
 }
 
+// MARK: - UITableViewDataSource, UITableViewDelegate
+
 extension SchemeControllerNew: UITableViewDataSource, UITableViewDelegate {
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let scheme = scheme {
@@ -235,20 +211,29 @@ extension SchemeControllerNew: UITableViewDataSource, UITableViewDelegate {
     
 }
 
+// MARK: - SchemeNewDelegate
+
 extension SchemeControllerNew: SchemeNewDelegate{
-    func scheme(didProgressChangedTo: Float) {
-        guard let scheme = scheme else { return }
-        
-        cellsInfoTableView.scrollToRow(at: IndexPath(row: scheme.curGroup, section: 0), at: .middle, animated: true)
-        let curFirstCell = scheme.groupedCells[scheme.curGroup][0]
-        scrollView.setContentOffset(CGPoint(x: 0, y: drawRectangle.cellHeight * scrollView.zoomScale * CGFloat(scheme.getNumOfRow(cellId: curFirstCell.id)!) - drawRectangle.cellHeight * scrollView.zoomScale), animated: true)
+    
+    func scheme(didProgressChangedTo newProgress: Float) {
+        scrollViewsToCurrentGroup()
         
         cellsInfoTableView.reloadData()
         drawRectangle.setNeedsDisplay()
         
-        progress = Float(scheme.cellsReady) / Float(scheme.cells.count)
-        progressBar.progress = progress
-        progressLabel.text = String(Int(roundf(progress * 100))) + " %"
-        
+        progressBar.progress = newProgress
+        progressLabel.text = String(Int(roundf(newProgress * 100))) + " %"
     }
+    
+    func schemeReversed() {
+        progressBar.progress = 0.0
+        progressLabel.text = "0 %"
+        
+        scrollViewsToTop()
+    }
+    
+    func schemeFinished() {
+        print("схема закончилась")
+    }
+    
 }
