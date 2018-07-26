@@ -22,6 +22,11 @@ class SchemeControllerNew: UIViewController {
         VC.scheme = scheme
         return VC
     }()
+    private var canZoom = true
+    private var minScale: CGFloat = 1.0
+    var rate: Float!
+    var pitch: Float!
+    var volume: Float!
     
     // MARK: - IBOutlets
     
@@ -42,8 +47,7 @@ class SchemeControllerNew: UIViewController {
         alert.addAction(UIAlertAction(title: "Да", style: .default, handler: { (action) in
             self.scheme?.reverse()
             
-            self.cellsInfoTableView.reloadData()
-            self.drawRectangle.setNeedsDisplay()
+            self.reloadTableAndDraw()
         }))
         present(alert, animated: true, completion: nil)
         
@@ -55,15 +59,20 @@ class SchemeControllerNew: UIViewController {
         if speechSynthesizer.isSpeaking {
             speechSynthesizer.stopSpeaking(at: .word)
             playPauseButton(isPlayImage: true)
+            canZoom = true
         } else {
             playPauseButton(isPlayImage: false)
+            
+            scrollView.setZoomScale(1.0, animated: true)
+            canZoom = false
+            
             for row in scheme.groupedCells[scheme.curGroup...] {
                 let str: String = row[0].color.defaultName! + " " + String(row.count)
                 let speechUtterance = AVSpeechUtterance(string: str)
                 
-                speechUtterance.rate = 0.25
-                speechUtterance.pitchMultiplier = 0.25
-                speechUtterance.volume = 0.75
+                speechUtterance.rate = rate
+                speechUtterance.pitchMultiplier = pitch
+                speechUtterance.volume = volume
                 speechUtterance.postUtteranceDelay = 0.005
                 speechUtterance.voice = AVSpeechSynthesisVoice(language: "ru-RU")
                 
@@ -88,6 +97,8 @@ class SchemeControllerNew: UIViewController {
         
         cellsInfoTableView.register(UINib(nibName: "InfoTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "InfoIDCell")
         
+        navigationController?.hidesBarsOnSwipe = true
+        
         scrollView.delegate = self
     }
     
@@ -103,6 +114,17 @@ class SchemeControllerNew: UIViewController {
         drawRectangle.frame = CGRect(origin: .zero, size: size)
         
         setupScrollViewZoom()
+        
+        if !loadSettings() {
+            registerDefaultSettings()
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "idSegueSettings" {
+            let newVC = segue.destination as! SettingsSpeechController
+            newVC.delegate = self
+        }
     }
     
     // MARK: - Internal methods
@@ -110,6 +132,21 @@ class SchemeControllerNew: UIViewController {
     func reloadTableAndDraw() {
         cellsInfoTableView.reloadData()
         drawRectangle.setNeedsDisplay()
+//        guard let scheme = scheme else { return }
+//        let curFirstCell = scheme.groupedCells[scheme.curGroup-1][0]
+//        let curSizeGroup = scheme.groupedCells[scheme.curGroup-1].count
+//        let curLastCell = scheme.groupedCells[scheme.curGroup-1][curSizeGroup - 1]
+//
+//        let numOfFirstRow = scheme.getNumOfRow(cellId: curFirstCell.id)
+//        let numOfLastRow = scheme.getNumOfRow(cellId: curLastCell.id)
+//
+//        guard let numOfFirstRow1 = numOfFirstRow, let numOfLastRow1 = numOfLastRow else { return }
+//
+//        let y = CGFloat(numOfFirstRow1) * drawRectangle.cellHeight * scrollView.zoomScale
+//        let height = CGFloat(numOfLastRow1 + 1) * drawRectangle.cellHeight * scrollView.zoomScale - y
+//        drawRectangle.setNeedsDisplay(CGRect(x: 0, y: y, width: drawRectangle.frame.width, height: height))
+//
+//        print("CGRECT: \(CGRect(x: 0, y: y, width: drawRectangle.frame.width, height: height))")
     }
     
     func playPauseButton(isPlayImage: Bool) {
@@ -121,8 +158,8 @@ class SchemeControllerNew: UIViewController {
     }
     
     func scrollViewsToTop() {
-//        cellsInfoTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .middle, animated: true)
-//        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+        cellsInfoTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .middle, animated: true)
+        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
     
     func scrollViewsToCurrentGroup() {
@@ -130,7 +167,30 @@ class SchemeControllerNew: UIViewController {
         
         cellsInfoTableView.scrollToRow(at: IndexPath(row: scheme.curGroup-1, section: 0), at: .middle, animated: true)
         let curFirstCell = scheme.groupedCells[scheme.curGroup-1][0]
-//        scrollView.setContentOffset(CGPoint(x: 0, y: drawRectangle.cellHeight * scrollView.zoomScale * CGFloat(scheme.getNumOfRow(cellId: curFirstCell.id)!) - drawRectangle.cellHeight * scrollView.zoomScale), animated: true)
+        scrollView.setContentOffset(CGPoint(x: 0, y: drawRectangle.cellHeight * scrollView.zoomScale * CGFloat(scheme.getNumOfRow(cellId: curFirstCell.id)!) - drawRectangle.cellHeight * scrollView.zoomScale), animated: true)
+    }
+    
+    func registerDefaultSettings() {
+        rate = AVSpeechUtteranceDefaultSpeechRate
+        pitch = 1.0
+        volume = 1.0
+        
+        let defaultSpeechSettings: Dictionary<String, Any> = ["rate": rate, "pitch": pitch, "volume": volume]
+        
+        UserDefaults.standard.register(defaults: defaultSpeechSettings)
+    }
+    
+    func loadSettings() -> Bool {
+        let userDefaults = UserDefaults.standard as UserDefaults
+        
+        if let theRate: Float = userDefaults.value(forKey: "rate") as? Float {
+            rate = theRate
+            pitch = userDefaults.value(forKey: "pitch") as! Float
+            volume = userDefaults.value(forKey: "volume") as! Float
+            
+            return true
+        }
+        return false
     }
     
 }
@@ -143,7 +203,7 @@ private extension SchemeControllerNew {
         let scrollViewFrame = scrollView.frame
         let scaleWidth = scrollViewFrame.size.width / scrollView.contentSize.width
         let scaleHeight = scrollViewFrame.size.height / scrollView.contentSize.height
-        let minScale = min(scaleWidth, scaleHeight)
+        minScale = min(scaleWidth, scaleHeight)
         
         scrollView.minimumZoomScale = minScale
         scrollView.maximumZoomScale = 1.0
@@ -154,6 +214,14 @@ private extension SchemeControllerNew {
 // MARK: - UIScrollViewDelegate
 
 extension SchemeControllerNew: UIScrollViewDelegate {
+    
+    func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
+        if canZoom {
+            scrollView.minimumZoomScale = minScale
+        } else {
+            scrollView.minimumZoomScale = 1.0
+        }
+    }
     
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
         drawRectangle.center.x = scrollView.frame.width / 2
@@ -193,7 +261,8 @@ extension SchemeControllerNew: UITableViewDataSource, UITableViewDelegate {
             cell.label.text = String(scheme.groupedCells[indexPath.row].count)
             cell.color = scheme.groupedCells[indexPath.row][0].color.colorValue
             cell.isRead = scheme.groupedCells[indexPath.row][0].isRead
-            cell.colorView.backgroundColor =  scheme.groupedCells[indexPath.row][0].color.colorValue
+            cell.colorView.layer.backgroundColor = scheme.groupedCells[indexPath.row][0].color.colorValue.cgColor
+//            cell.colorView.backgroundColor =  scheme.groupedCells[indexPath.row][0].color.colorValue
         }
         return cell
     }
@@ -217,10 +286,9 @@ extension SchemeControllerNew: UITableViewDataSource, UITableViewDelegate {
 extension SchemeControllerNew: SchemeNewDelegate{
     
     func scheme(didProgressChangedTo newProgress: Float) {
-        scrollViewsToCurrentGroup()
         
-        cellsInfoTableView.reloadData()
-        drawRectangle.setNeedsDisplay()
+        self.scrollViewsToCurrentGroup()
+        reloadTableAndDraw()
         
         progressBar.progress = newProgress
         progressLabel.text = String(Int(roundf(newProgress * 100))) + " %"
@@ -235,6 +303,25 @@ extension SchemeControllerNew: SchemeNewDelegate{
     
     func schemeFinished() {
         print("схема закончилась")
+    }
+    
+}
+
+// MARK: - SettingsViewControllerDelegate
+
+extension SchemeControllerNew: SettingsViewControllerDelegate {
+    
+    func didSaveSettings() {
+        print("settings saved")
+        let settings = UserDefaults.standard
+        
+        rate = settings.value(forKey: "rate") as! Float
+        pitch = settings.value(forKey: "pitch") as! Float
+        volume = settings.value(forKey: "volume") as! Float
+        
+        speechSynthesizer.stopSpeaking(at: .word)
+        playPauseButton(isPlayImage: true)
+        canZoom = true
     }
     
 }

@@ -35,6 +35,8 @@
 		C1FCB3D620B7B99B001EB3AD /* DrawRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FCB3D520B7B99B001EB3AD /* DrawRectangle.swift */; };
 		C1FCB3D820B7BA1A001EB3AD /* Scheme.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1FCB3D720B7BA1A001EB3AD /* Scheme.storyboard */; };
 		C1FCB3DA20B7BA7A001EB3AD /* SchemeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FCB3D920B7BA7A001EB3AD /* SchemeController.swift */; };
+		C1FF8A3D20FBB8AA00E8BBFE /* SettingsSpeechController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FF8A3C20FBB8AA00E8BBFE /* SettingsSpeechController.swift */; };
+		C1FF8A3F20FBBB6A00E8BBFE /* CustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FF8A3E20FBBB6A00E8BBFE /* CustomSlider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +70,8 @@
 		C1FCB3D520B7B99B001EB3AD /* DrawRectangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawRectangle.swift; sourceTree = "<group>"; };
 		C1FCB3D720B7BA1A001EB3AD /* Scheme.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Scheme.storyboard; sourceTree = "<group>"; };
 		C1FCB3D920B7BA7A001EB3AD /* SchemeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemeController.swift; sourceTree = "<group>"; };
+		C1FF8A3C20FBB8AA00E8BBFE /* SettingsSpeechController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSpeechController.swift; sourceTree = "<group>"; };
+		C1FF8A3E20FBBB6A00E8BBFE /* CustomSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSlider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,6 +226,8 @@
 				C1FCB3D920B7BA7A001EB3AD /* SchemeController.swift */,
 				C1FCB3D520B7B99B001EB3AD /* DrawRectangle.swift */,
 				C15E10A720F681B2001005D3 /* InfoTableViewCell.swift */,
+				C1FF8A3C20FBB8AA00E8BBFE /* SettingsSpeechController.swift */,
+				C1FF8A3E20FBBB6A00E8BBFE /* CustomSlider.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -356,9 +362,11 @@
 				C15E10A420F67884001005D3 /* SchemeControllerNew.swift in Sources */,
 				C13D0AE220EA11A0000F3677 /* String.swift in Sources */,
 				C19EC14720BFED230069BCEF /* SchemeCell.swift in Sources */,
+				C1FF8A3D20FBB8AA00E8BBFE /* SettingsSpeechController.swift in Sources */,
 				C1DEEF8920C3AB38006AFB7C /* SchemesListController.swift in Sources */,
 				C1C7639120E8CA9400F91E02 /* CustomColor.swift in Sources */,
 				C1AE266120F33B53001B60F8 /* StringProtocol.swift in Sources */,
+				C1FF8A3F20FBBB6A00E8BBFE /* CustomSlider.swift in Sources */,
 				C1BFA4A520C6553600FA366C /* SchemeMO+CoreDataProperties.swift in Sources */,
 				C1CFAEB620B58595008A4CCD /* JBBParser.swift in Sources */,
 				C1CFAEB420B5845B008A4CCD /* Scheme.swift in Sources */,

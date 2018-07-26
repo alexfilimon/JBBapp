@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JBBApp/Scheme/Controller/SchemeControllerNew.swift"
-            timestampString = "553350984.187588"
+            timestampString = "553802758.4905061"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "197"
-            endingLineNumber = "197"
-            landmarkName = "tableView(_:cellForRowAt:)"
+            startingLineNumber = "230"
+            endingLineNumber = "230"
+            landmarkName = "viewForZooming(in:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
