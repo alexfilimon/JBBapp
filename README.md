@@ -18,4 +18,4 @@
 - Реализовать парсер CBB файлов
 - Сделать экран настроек
 
-![Готовый экран](https://github.com/alexfilimon/JBBapp/tree/master/images/screen1.png)
+![Готовый экран](https://github.com/alexfilimon/JBBapp/blob/master/images/screen1.png)
