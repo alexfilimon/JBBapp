@@ -102,6 +102,8 @@ class SchemeNew {
             groupedCells[groupIndex].reverse()
         }
         
+        curGroup = 0
+        
         delegate?.schemeReversed?()
     }
     
